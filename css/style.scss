@@ -1,0 +1,71 @@
+body {
+    font-family: Lato, "DM Sans", sans-serif;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.search-bar {
+    position: relative;
+    height: 70px;
+    margin-bottom: 50px;
+    font-size: 1em;
+}
+
+input {
+    height: 70px;
+    width: 100%;
+    text-indent: 20px;
+    font-weight: bold;
+    color: #9c9a9a;
+    background-color: #E7E7E7;
+    border-radius: 5px;
+    border: none;
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    top: 40%;
+    right: 20px;
+}
+
+.search-filters {
+    display: flex;
+}
+
+.dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 170px;
+    height: 70px;
+    margin-right: 15px;
+    padding: 0 20px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-ingredients {
+    background-color: #3282F7;
+}
+
+.button-appliances {
+    background-color: #68D9A4;
+}
+
+.button-ustensils {
+    background-color: #ED6454;
+}
