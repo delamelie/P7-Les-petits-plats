@@ -1,7 +1,7 @@
 export const recipes = [
     {
         "id": 1,
-        "name": "Limonade de Coco",
+        "name": "Limonade de coco",
         "servings": 1,
         "ingredients": [
             {
@@ -28,17 +28,17 @@ export const recipes = [
             }
         ],
         "time": 10,
-        "description": "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée",
+        "description": "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistance désirée",
         "appliance": "Blender",
         "ustensils": ["cuillère à Soupe", "verres", "presse citron"]
     },
     {
         "id": 2,
-        "name": "Poisson Cru à la tahitienne",
+        "name": "Poisson cru à la tahitienne",
         "servings": 2,
         "ingredients": [
             {
-                "ingredient": "Thon Rouge (ou blanc)",
+                "ingredient": "Thon rouge (ou blanc)",
                 "quantity": 200,
                 "unit": "grammes"
             },
@@ -55,17 +55,17 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Citron Vert",
+                "ingredient": "Citron vert",
                 "quantity": 5
             },
             {
-                "ingredient": "Lait de Coco",
+                "ingredient": "Lait de coco",
                 "quantity": 100,
                 "unit": "ml"
             }
         ],
         "time": 60,
-        "description": "Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures. (Si possible faites-le le soir pour le lendemain. Après avoir laissé mariner le poisson, coupez le concombre en fines rondelles sans la peau et les tomates en prenant soin de retirer les pépins. Rayer la carotte. Ajouter les légumes au poissons avec le citron cette fois ci dans un Saladier. Ajouter le lait de coco. Pour ajouter un peu plus de saveur vous pouvez ajouter 1 à 2 cuillères à soupe de Crème de coco",
+        "description": "Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures. (Si possible faites-le le soir pour le lendemain. Après avoir laissé mariner le poisson, coupez le concombre en fines rondelles sans la peau et les tomates en prenant soin de retirer les pépins. Rayer la carotte. Ajouter les légumes au poissons avec le citron, cette fois-ci dans un saladier. Ajouter le lait de coco. Pour ajouter un peu plus de saveur vous pouvez ajouter 1 à 2 cuillères à soupe de Crème de coco",
         "appliance": "Saladier",
         "ustensils": ["presse citron"]
     }, {
@@ -167,7 +167,7 @@ export const recipes = [
                 "unit": "cuillères à soupe"
             },
             {
-                "ingredient": "gruyère râpé",
+                "ingredient": "Gruyère râpé",
                 "quantity": 100,
                 "unit": "grammes"
             },
@@ -205,7 +205,7 @@ export const recipes = [
                 "unit": "cl"
             },
             {
-                "ingredient": "Sucre en Poudre",
+                "ingredient": "Sucre en poudre",
                 "quantity": 100,
                 "unit": "grammes"
             },
@@ -278,12 +278,12 @@ export const recipes = [
                 "quantity": 2
             },
             {
-                "ingredient": "Sucre en Poudre",
+                "ingredient": "Sucre en poudre",
                 "quantity": "110",
                 "unit": "grammes"
             },
             {
-                "ingredient": "farine",
+                "ingredient": "Farine",
                 "quantity": 90,
                 "unit": "grammes"
             }
@@ -296,7 +296,7 @@ export const recipes = [
     },
     {
         "id": 9,
-        "name": "Salade Méditerannéene fraîche au chèvre",
+        "name": "Salade méditerannéene fraîche au chèvre",
         "servings": 4,
         "ingredients": [
             {
@@ -312,7 +312,7 @@ export const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Vinaigre Balsamic"
+                "ingredient": "Vinaigre balsamique"
             },
             {
                 "ingredient": "Huile d'olive"
@@ -376,7 +376,7 @@ export const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Jambon de parme",
+                "ingredient": "Jambon de Parme",
                 "quantity": 4,
                 "unit": "tranches"
             },
@@ -385,7 +385,7 @@ export const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Salade Verte",
+                "ingredient": "Salade verte",
                 "quantity": 1
             },
             {
@@ -466,7 +466,7 @@ export const recipes = [
     },
     {
         "id": 14,
-        "name": "Galette Bretonne Saucisse et Fromage à raclette",
+        "name": "Galette bretonne saucisse et fromage à raclette",
         "servings": 2,
         "ingredients": [
             {
@@ -506,7 +506,7 @@ export const recipes = [
     },
     {
         "id": 15,
-        "name": "Crêpes Chocolat Banane",
+        "name": "Crêpes chocolat banane",
         "servings": 10,
         "ingredients": [
             {
@@ -569,7 +569,7 @@ export const recipes = [
                 "unit": "tiges"
             },
             {
-                "ingredient": "huile d'olives",
+                "ingredient": "Huile d'olives",
                 "quantity": 2,
                 "unit": "cuillère à soupe"
             }
