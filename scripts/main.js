@@ -1,157 +1,126 @@
 import { recipes } from "/data/recipes.js"
 
-console.log(recipes[0]['ingredients'][0])
-let ingredient
-let quantity
-let unit
-let item
-let ingredients
-/*console.log(recipes)*/
 
-function test() {
-    for (let i = 0; i < recipes.length; i++) {
-        ingredients = recipes[i].ingredients
-        ingredients.forEach((data) => {
-            ingredient = data.ingredient
-            quantity = data.quantity
-            unit = data.unit
-            /*console.log(ingredient)
-            console.log(quantity)
-            console.log(unit)*/
-            for (let i = 0; i < ingredients.length; i++) {
-                item = ingredients[i]
-                /*console.log(item)*/
-                let hasUnit = item.hasOwnProperty("unit")
-                if (hasUnit) {
-                    /*console.log('oui')*/
-                    return ingredient, quantity
-                } else {
-                    /*console.log('non')*/
-                    /*return ingredient, quantity, unit*/
-                }
-            }
-        })
-    }
+const recipesContainer = document.querySelector(".recipes-container")
+
+function createRecipeCard(recipe) {
+
+    const divCard = document.createElement("div")
+    const image = document.createElement("img")
+    const divRecipe = document.createElement("div")
+    const cardHeader = document.createElement("div")
+    const divTitle = document.createElement("h1")
+    const divTime = document.createElement("div")
+    const spanIcon = document.createElement("span")
+    const spanDuration = document.createElement("span")
+    const cardBody = document.createElement("div")
+    const divIngredients = document.createElement("div")
+    const divDescription = document.createElement("div")
+
+    divCard.setAttribute("class", "card col-auto col-md-6 col-xxl-4 g-4 border-0")
+    image.setAttribute("src", recipe.picture)
+    image.setAttribute("class", "rounded-top h-50")
+    image.setAttribute("alt", "")
+    divRecipe.setAttribute("class", "card-recipe h-50 p-3 rounded-bottom")
+    cardHeader.setAttribute("class", "card-recipe-header row mb-2")
+    divTitle.setAttribute("class", "card-recipe-header-title col-8 mb-0 fw-bold")
+    divTime.setAttribute("class", "card-text card-recipe-header-time col-4 text-end fw-bold")
+    spanIcon.setAttribute("class", "fa-regular fa-clock")
+    spanDuration.setAttribute("class", "time-number ms-2")
+    cardBody.setAttribute("class", "card-recipe-body d-flex w-100 mt-2")
+    divIngredients.setAttribute("class", "card-recipe-body-ingredients w-50")
+    divDescription.setAttribute("class", "card-recipe-body-description w-50")
+
+    divTitle.textContent = recipe.name
+    spanDuration.textContent = `${recipe.time} min`
+    divDescription.textContent = recipe.description
+
+    divCard.appendChild(image)
+    divCard.appendChild(divRecipe)
+    divRecipe.appendChild(cardHeader)
+    divRecipe.appendChild(cardBody)
+    cardHeader.appendChild(divTitle)
+    cardHeader.appendChild(divTime)
+    divTime.appendChild(spanIcon)
+    divTime.appendChild(spanDuration)
+    cardBody.appendChild(divIngredients)
+    cardBody.appendChild(divDescription)
+
+    recipe.ingredients.forEach((ingredient) => {
+        const divItem = document.createElement("div")
+        const spanIngredient = document.createElement("span")
+        const spanQuantity = document.createElement("span")
+        const spanUnit = document.createElement("span")
+
+        spanIngredient.setAttribute("class", "fw-bold")
+
+        spanIngredient.textContent = `${ingredient.ingredient} : `
+        spanQuantity.textContent = ingredient.quantity
+        spanUnit.textContent = ingredient.unit
+
+        divItem.appendChild(spanIngredient)
+        divItem.appendChild(spanQuantity)
+        divItem.appendChild(spanUnit)
+        divIngredients.appendChild(divItem)
+
+    })
+    return divCard
 }
-
-
-
-function recipeFactory(data) {
-    // console.log(recipes)
-    const { name, time, description } = data
-    test()
-    /*console.log(ingredient)
-    console.log(quantity)
-    console.log(unit)*/
-
-
-    function getRecipeDOM() {
-
-        const divCard = document.createElement("div")
-        const image = document.createElement("img")
-        const divRecipe = document.createElement("div")
-        const cardHeader = document.createElement("div")
-        const title = document.createElement("h1")
-        const divTime = document.createElement("div")
-        const spanIcon = document.createElement("span")
-        const spanDuration = document.createElement("span")
-        const cardBody = document.createElement("div")
-        const divIngredients = document.createElement("div")
-        const divDescription = document.createElement("div")
-        divCard.setAttribute("class", "card border-0")
-        image.setAttribute("src", "images/limonade-coco.jpg")
-        image.setAttribute("class", "rounded-top h-50")
-        divRecipe.setAttribute("class", "card-recipe h-50 p-3 rounded-bottom")
-        cardHeader.setAttribute("class", "card-recipe-header d-flex mb-3")
-        title.setAttribute("class", "card-recipe-header-title w-75 m-0 fw-bold")
-        divTime.setAttribute("class", "card-recipe-header-time text-end w-25 fw-bold")
-        spanIcon.setAttribute("class", "fa-regular fa-clock")
-        spanDuration.setAttribute("class", "time-number ms-2")
-        cardBody.setAttribute("class", "card-recipe-body d-flex w-100 mt-2")
-        divIngredients.setAttribute("class", "card-recipe-body-ingredients w-50")
-        divDescription.setAttribute("class", "card-recipe-body-description w-50")
-        divCard.appendChild(image)
-        divCard.appendChild(divRecipe)
-        divRecipe.appendChild(cardHeader)
-        divRecipe.appendChild(cardBody)
-        cardHeader.appendChild(title)
-        cardHeader.appendChild(divTime)
-        divTime.appendChild(spanIcon)
-        divTime.appendChild(spanDuration)
-        cardBody.appendChild(divIngredients)
-        cardBody.appendChild(divDescription)
-        title.textContent = name
-        spanDuration.textContent = `${time} min`
-        divIngredients.textContent = `${ingredient}: ${quantity} ${unit}`
-        divDescription.textContent = description
-        return (divCard)
-    }
-    return { getRecipeDOM }
-}
-
 
 function displayRecipes(recipes) {
     recipes.forEach((recipe) => {
         const recipesContainer = document.querySelector(".recipes-container")
-        recipesContainer.appendChild(recipeFactory(recipe).getRecipeDOM())
+        recipesContainer.appendChild(createRecipeCard(recipe))
     })
 }
 displayRecipes(recipes)
 
 
-/*function test(recipes) {
-    for (let i = 0; i < recipes.length; i++) {
-        recipes[i].ingredients.forEach((data) => {
-            document.querySelector(".card-recipe-body").innerHTML += `${data.ingredient}: ${data.quantity} ${data.unit}`
-        })
-    }
-}
-test(recipes)*/
 
+/*
+// Create all recipes' cards
+function createRecipeCards(recipes) {
+    let recipeCard = '';
 
+    recipes.forEach(recipe => {
+        let ingredients = recipe.ingredients;
+        let ingredientDiv = '';
 
+        ingredients.forEach(ingredient => {
+            ingredientDiv += `
+            <div class="card-recipe-body-ingredients-item">
+                <span class="item-ingredient">${ingredient.ingredient}</span>
+                <span class="item-quantity fw-normal">${ingredient.quantity}</span>
+                <span class="item-unit fw-normal">${ingredient.unit}</span>
+            </div>
+            `;
+        });
 
-// for (let i = 0; i < recipes.length; i++) {
-//     // initialisation liste ingredients recette =''
+        // Create recipes' cards
 
-//     recipes[i].ingredients.forEach((data) => {
-//         const test = document.createElement('div')
-//         document.querySelector(".card-recipe-body").appendChild(test)
-//         test.innerHTML += (`${data.ingredient}: ${data.quantity} ${data.unit}`)
+        recipeCard += `
+<div class="card border-0">
+    <img src="images/limonade-coco.jpg" class="rounded-top h-50" alt="...">
+    <div class="card-recipe h-50 p-3 rounded-bottom">
+        <div class="card-recipe-header d-flex mb-3">
+            <h1 class="card-recipe-header-title w-75 m-0 fw-bold">${recipe.name}</h1>
+            <div class="card-text recipe-time">
+                <span class="fa-regular fa-clock"></span>
+                <span class="time-number ms-2">${recipe.time} min</span>
+            </div>
+        </div>
 
-//         // ajout ingredient à liste
-//         // ingredientsArray.push(data.ingredient)
-//         // inscrit liste dans html
-//         // console.log(i, document)
-//     })
-// }
-
-
-/*function recipeFactory(data) {
-
-const { name, ingredients, time, description } = data
-
-
-function getRecipeDOM() {
-const recipeCard = `
-<div class="card" style="width: 50%;">
-<img src="images/pexels-kindel-media-8181524.png" class="card-img-top" alt="...">
-<div class="card-body">
-   <div class="card-text d-flex justify-content-between align-items-center">
-       <h1 class="card-text recipe-title">${name}</h1>
-       <p class="card-text recipe-time">${time}</p>
-   </div>
-
-   <div class="card-text d-flex justify-content-between align-items-center">
-       <p class="card-text recipe-ingredients">${ingredients}</p>
-       <p class="card-text recipe-description">${description}</p>
+        <div class="card-recipe-body d-flex w-100 mt-2">
+            <div class="card-recipe-body-ingredients w-50">${ingredientDiv}</div>
+            <div class="card-recipe-body-description w-50">${recipe.description}</div>
+        </div>
    </div>
 </div>
-</div>
-`
-console.log("yo")
-return (recipeCard)
+        `;
+    });
+    recipesContainer.innerHTML = recipeCard;
 }
-return { name, ingredients, time, description, getRecipeDOM }
-}*/
+
+createRecipeCards(recipes) */
+
 

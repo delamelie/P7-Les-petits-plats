@@ -16,40 +16,49 @@
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
     <script src="scripts/main.js" type="module" defer></script>
+    <script src="scripts/dropdown.js" type="module" defer></script>
     <title>Les Petits plats - Accueil</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-lg">
 
         <header class="d-flex justify-content-center mb-4 mt-3">
             <img src=" logo/logo.png" alt="logo">
         </header>
 
         <main class="search">
-            <form method="post" action="" class="search-bar position-relative mb-5">
+            <form method="post" action="" class="search-bar-recipe position-relative mb-5">
                 <input type="text" class="search-bar-input w-100 fw-bold rounded border-0"
                     placeholder="Rechercher une recette">
                 <i class="fa-solid fa-magnifying-glass position-absolute"></i>
             </form>
 
-            <section class="search-filters d-flex mb-5">
+            <section class="search-filters d-flex flex-wrap mb-3">
+
                 <button
-                    class="search-filters-button search-filters-button__primary col-2 d-flex justify-content-between align-items-center me-3 px-3 fw-bold rounded border-0"
+                    class="search-filters-button search-filters-button__primary col-7 mb-2 col-sm-3 col-lg-2 d-flex justify-content-between align-items-center me-3 px-3 fw-bold rounded border-0"
                     type="button" aria-expanded="false">
                     <span>Ingrédients</span>
                     <span class="fa-solid fa-chevron-down"></span>
+                    <div class="search-filters-tags">
+                        <form method="post" action="" class="search-bar-tags">
+                            <input type="text" class="border-0" placeholder="Rechercher un ingrédient">
+                            <i class="fa-solid fa-chevron-up"></i>
+                        </form>
+                        <div class="search-filters-ingredients row fw-normal fs-6 m-4 rounded"></div>
+                    </div>
                 </button>
 
                 <button
-                    class="search-filters-button search-filters-button__secondary col-2 d-flex justify-content-between align-items-center me-3 px-3 fw-bold rounded border-0"
+                    class="search-filters-button search-filters-button__secondary col-7 mb-2 col-sm-3 col-lg-2 d-flex justify-content-between align-items-center me-3 px-3 fw-bold rounded border-0"
                     type="button" aria-expanded="false">
                     <span>Appareils</span>
                     <span class="fa-solid fa-chevron-down"></span>
                 </button>
 
                 <button
-                    class="search-filters-button search-filters-button__tertiary col-2 d-flex justify-content-between align-items-center px-3 fw-bold rounded border-0"
+                    class="search-filters-button search-filters-button__tertiary col-7 mb-2 col-sm-3 col-lg-2 d-flex justify-content-between align-items-center me-3 px-3 fw-bold rounded border-0"
                     type="button" aria-expanded="false">
                     <span>Ustensiles</span>
                     <span class="fa-solid fa-chevron-down"></span>
@@ -60,23 +69,7 @@
 
         <section class="recipes">
 
-            <div class="recipes-container">
-                <!--<div class="card" style="width: 50%;">
-                    <img src="images/pexels-kindel-media-8181524.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <div class="card-text d-flex justify-content-between align-items-center">
-                            <h1 class="card-text recipe-title"></h1>
-                            <p class="card-text recipe-time"></p>
-                        </div>
-            
-                        <div class="card-text d-flex justify-content-between align-items-center">
-                            <p class="card-text recipe-ingredients"></p>
-                            <p class="card-text recipe-description"></p>
-                        </div>
-                    </div>
-                </div>
-            -->
-            </div>
+            <div class="recipes-container row"></div>
 
 
         </section>

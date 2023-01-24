@@ -1,6 +1,7 @@
 export const recipes = [
     {
         "id": 1,
+        "picture": "images/limonade-coco.jpg",
         "name": "Limonade de coco",
         "servings": 1,
         "ingredients": [
@@ -34,6 +35,7 @@ export const recipes = [
     },
     {
         "id": 2,
+        "picture": "images/poisson-tahitienne.jpg",
         "name": "Poisson cru à la tahitienne",
         "servings": 2,
         "ingredients": [
@@ -139,7 +141,7 @@ export const recipes = [
             }
         ],
         "time": 50,
-        "description": "Faire cuire le riz. Une fois le riz cuit, le laisser refroidir. Couper les oeufs dur en quarts ou en lamelle au choix, coupez le tomates en dés, ajouter au riz les oeufs, les tomates, le poisson, le maïs et la vinaigrette. Ajouter au gout de chacun des corniches, olives etc..",
+        "description": "Faire cuire le riz. Une fois le riz cuit, le laisser refroidir. Couper les oeufs durs en quarts ou en lamelles au choix, couper les tomates en dés, ajouter au riz les oeufs, les tomates, le poisson, le maïs et la vinaigrette. Ajouter au goût de chacun des corniches, olives etc..",
         "appliance": "Cuiseur de riz",
         "ustensils": ["saladier", "passoire"]
     },

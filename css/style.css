@@ -3,19 +3,19 @@ body {
   line-height: 1.5;
   box-sizing: border-box;
 }
-body .search-bar {
+body .search-bar-recipe {
   height: 70px;
 }
-body .search-bar input {
+body .search-bar-recipe input {
   height: 70px;
   text-indent: 20px;
   font-size: 1em;
   background-color: #E7E7E7;
 }
-body .search-bar input::placeholder {
+body .search-bar-recipe input::placeholder {
   color: #c0c2c4;
 }
-body .search-bar .fa-magnifying-glass {
+body .search-bar-recipe .fa-magnifying-glass {
   top: 25px;
   right: 20px;
   font-size: 30px;
@@ -24,6 +24,7 @@ body .search-filters-button {
   height: 70px;
   font-size: 1.1em;
   color: #ffffff;
+  position: relative;
 }
 body .search-filters-button__primary {
   background-color: #3282F7;
@@ -34,11 +35,29 @@ body .search-filters-button__secondary {
 body .search-filters-button__tertiary {
   background-color: #ED6454;
 }
-body .recipes-container {
-  display: grid;
-  grid-template-columns: repeat(3, 31%);
-  justify-content: space-between;
-  row-gap: 30px;
+body .search-filters-tags {
+  /*display: none;*/
+  color: #ffffff;
+  background-color: #3282F7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+body .search-filters form {
+  width: 650px;
+}
+body .search-filters form input {
+  width: 85%;
+  height: 70px;
+  color: #ffffff;
+  background-color: #3282F7;
+}
+body .search-filters form input::placeholder {
+  color: #c0c2c4;
+}
+body .search-filters form input:focus {
+  outline: none;
 }
 body .recipes-container .card {
   height: 365px;
@@ -56,16 +75,10 @@ body .recipes-container .card-recipe-header-title {
 body .recipes-container .card-recipe-header-time {
   font-size: 1.6em;
 }
-body .recipes-container .card-recipe-body {
-  /*overflow: hidden;*/
-  /*width: 100%;
-  white-space: nowrap;*/
-}
 body .recipes-container .card-recipe-body-description {
-  /*max-width: 90%;*/
   overflow: hidden;
-  /*text-overflow: ellipsis;
-  white-space: nowrap;*/
+  text-overflow: ellipsis;
+  /*white-space: nowrap;*/
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
