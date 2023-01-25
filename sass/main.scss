@@ -1,3 +1,7 @@
+$color-primary: #3282F7;
+$color-secondary: #68D9A4;
+$color-tertiary: #ED6454;
+
 body {
     font-family: Lato, "DM Sans", sans-serif;
     line-height: 1.5;
@@ -31,49 +35,80 @@ body {
             font-size: 1.1em;
             color: #ffffff;
             position: relative;
+        }
 
-            &__primary {
-                background-color: #3282F7;
-            }
+        .color--primary {
+            background-color: $color-primary;
+        }
 
-            &__secondary {
-                background-color: #68D9A4;
-            }
+        .color--secondary {
+            background-color: $color-secondary;
+        }
 
-            &__tertiary {
-                background-color: #ED6454;
-            }
+        .color--tertiary {
+            background-color: $color-tertiary
+        }
+
+        /*&-dropdown {
+            color: #ffffff;
+        }
+
+        &-tags {
+            /*display: none;
+            z-index: 100;
+        }*/
+
+        &-dropdown {
+            color: #ffffff;
+            position: relative;
+
         }
 
         &-tags {
             /*display: none;*/
-            color: #ffffff;
             background-color: #3282F7;
             position: absolute;
             top: 0;
-            left: 0;
+            width: 600px;
             z-index: 100;
         }
 
         form {
 
-            width: 650px;
-
             input {
-                width: 85%;
+                width: 90%;
                 height: 70px;
+                text-indent: 20px;
+                /*font-size: 1em;*/
                 color: #ffffff;
-                background-color: #3282F7;
-
-                &::placeholder {
-                    color: #c0c2c4;
-                }
 
                 &:focus {
                     outline: none;
                 }
             }
+
+            .input__color--primary::placeholder {
+                color: lighten($color-primary, 20%);
+            }
+
+            .input__color--secondary::placeholder {
+                color: lighten($color-secondary, 20%);
+            }
+
+            .input__color--tertiary::placeholder {
+                color: lighten($color-tertiary, 20%);
+            }
+
+            .fa-chevron-up {
+                color: #ffffff;
+            }
+
         }
+
+        /*&-category {
+            max-height: 400px;
+            overflow-y: scroll;
+        }*/
     }
 
 
