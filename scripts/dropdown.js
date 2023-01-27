@@ -10,7 +10,6 @@ import { recipes } from "/data/recipes.js"
 const ingredientsContainer = document.querySelector(".search-filters-ingredients")
 const appliancesContainer = document.querySelector(".search-filters-appliances")
 const ustensilsContainer = document.querySelector(".search-filters-ustensils")
-
 const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
 
 
@@ -30,6 +29,7 @@ function removeDuplicateIngredients() {
     return newIngredientsArray.filter((item, index) => newIngredientsArray.indexOf(item) === index)
 }
 
+
 // Display ingredients
 
 let ingredientsFilteredArray = removeDuplicateIngredients(newIngredientsArray)
@@ -42,7 +42,6 @@ function ingredientsDropdown(items) {
 }
 
 ingredientsDropdown(ingredientsFilteredArray)
-
 
 
 /////////////////////Appliances//////////////////
@@ -96,8 +95,8 @@ function removeDuplicateUstensils(newUstensilsArray) {
 
 let ustensilsFilteredArray = removeDuplicateUstensils(newUstensilsArray)
 
-function capitalizeWords(arr) {
-    return arr.map((word) => {
+function capitalizeWords(array) {
+    return array.map((word) => {
         const capitalizedFirst = word.charAt(0).toUpperCase();
         const rest = word.slice(1).toLowerCase();
         return capitalizedFirst + rest;
@@ -137,18 +136,19 @@ ustensilsDropdown(ustensilsFilteredCapitalizedArray)
 }
 openFilters()*/
 
-function closeFilters() {
+/*function closeFilters() {
     closeFiltersBtn.forEach(button =>
         button.addEventListener("click", (event) => {
             let dropdown = event.target.parentNode.parentNode
             let closeFiltersBtn = ingredientsContainer.previousElementSibling
-            /*dropdown.classList.toggle("closed")*/
+            dropdown.classList.remove('show')
+            /*dropdown.classList.toggle("closed")
             dropdown.style.display = "none"
             closeFiltersBtn.style.display = "block"
-            /*event.target.nextElementSibling.style.display = "block"*/
+            /*event.target.nextElementSibling.style.display = "block"
         }))
 }
-closeFilters()
+closeFilters()*/
 
 
 
