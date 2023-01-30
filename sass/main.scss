@@ -115,6 +115,11 @@ body {
         &-button {
             font-size: 1.1em;
             color: #ffffff;
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #ffffff;
         }
 
         .accordion-button:not(.collapsed)::after {
@@ -143,8 +148,11 @@ body {
         &-dropdown {
             color: #ffffff;
             border: none;
-            /*position: relative;
-            left: 600;*/
+            position: relative;
+            /*left: 600;*/
+            /*max-width: 600px;
+            width: fit-content;
+            block-size: fit-content;*/
 
         }
 
@@ -153,10 +161,8 @@ body {
             /*display: none;*/
             background-color: #3282F7;
             /*position: absolute;
-            top: 0;*/
-            width: 90%;
-            z-index: 100;
-
+            top: 0;
+            z-index: 100;*/
         }
 
         form {
