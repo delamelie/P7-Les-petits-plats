@@ -1,9 +1,6 @@
 import { recipes } from "/data/recipes.js"
 
 
-/*console.log(recipes)*/
-/*console.log(recipes[0]['ingredients'][0])*/
-
 
 /////////////////////////////DOM elements/////////////////////////
 
@@ -20,10 +17,9 @@ const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
 let newIngredientsArray = []
 
 function removeDuplicateIngredients() {
-    recipes.forEach((recipe) => {
-        recipe.ingredients.forEach((ingredient) => {
-            let ing = ingredient.ingredient
-            newIngredientsArray.push(ing)
+    recipes.map(recipe => {
+        recipe.ingredients.map(ingredient => {
+            newIngredientsArray.push(ingredient.ingredient)
         })
     })
     return newIngredientsArray.filter((item, index) => newIngredientsArray.indexOf(item) === index)
@@ -34,9 +30,9 @@ function removeDuplicateIngredients() {
 
 let ingredientsFilteredArray = removeDuplicateIngredients(newIngredientsArray)
 
-function ingredientsDropdown(items) {
-    items.forEach(item => {
-        let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${item}</div>`
+function ingredientsDropdown(ingredients) {
+    ingredients.map(ingredient => {
+        let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${ingredient}</div>`
         ingredientsContainer.innerHTML += ingredientsListItem
     })
 }
@@ -44,24 +40,75 @@ function ingredientsDropdown(items) {
 ingredientsDropdown(ingredientsFilteredArray)
 
 
+
+/*let testArray = recipes.map(recipe => {
+    let newIngredientsArray = []
+    recipe.ingredients.forEach(ingredient => newIngredientsArray.push(ingredient.ingredient.toLowerCase()))
+    return { id: recipe.id, ingredient: newIngredientsArray }
+})
+
+console.log(testArray)
+
+
+
+function removeDuplicateIngredients() {
+    testArray.filter((item, index) => testArray.indexOf(item) === index)
+}
+
+console.log(testArray)
+
+
+let ingredientsFilteredArray = removeDuplicateIngredients(testArray)
+
+function ingredientsDropdown(items) {
+    items.forEach(item => {
+        let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${item}</div>`
+        ingredientsContainer.innerHTML += ingredientsListItem
+    })
+}
+
+ingredientsDropdown(ingredientsFilteredArray)*/
+
+
+
+/////////////////////////// Test/////////////////////////////////
+/*function createDropdown() {
+    recipes.forEach(recipe => {
+        let ingredients = recipe.ingredients;
+       ingredients.filter((item, index) => newIngredientsArray.indexOf(item) === index)
+        ingredients.forEach(ingredient => {
+
+            let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${ingredient.ingredient}</div>`;
+            ingredientsContainer.innerHTML += ingredientsListItem
+        });
+    });
+}
+
+createDropdown(recipes)*/
+
+
+
+
+
+
+
 /////////////////////Appliances//////////////////
 
 // Retrieve appliances and remove duplicates
 
-let newAppliancesArray = []
+/*let newAppliancesArray = []
 
 function removeDuplicateAppliances(newAppliancesArray) {
-    recipes.forEach((recipe) => {
-        let appliance = recipe.appliance
-        newAppliancesArray.push(appliance)
+    recipes.map(recipe => {
+        newAppliancesArray.push(recipe.appliance)
     })
     return newAppliancesArray.filter((item, index) => newAppliancesArray.indexOf(item) === index)
-}
+}*/
 
 
 // Display appliances
 
-let appliancesFilteredArray = removeDuplicateAppliances(newAppliancesArray)
+/*let appliancesFilteredArray = removeDuplicateAppliances(newAppliancesArray)
 
 function appliancesDropdown(appliances) {
     appliances.forEach((appliance) => {
@@ -70,7 +117,62 @@ function appliancesDropdown(appliances) {
     });
 }
 
-appliancesDropdown(appliancesFilteredArray)
+appliancesDropdown(appliancesFilteredArray)*/
+
+
+
+/*let result = recipes.reduce(function (r, a) {
+    r[a.appliance] = r[a.appliance] || [];
+    r[a.appliance].push(a);
+    console.log([a.appliance].toString())
+    return r;
+}, Object.create(null));
+console.log(result)*/
+
+
+const results = {};
+for (const { id, appliance } of recipes) {
+    if (!results[appliance]) results[appliance] = []
+    results[appliance].push({ id, appliance })
+    console.log(appliance)
+    let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${appliance}</div>`
+    appliancesContainer.innerHTML += appliancesListItem
+}
+console.log(results.toString())
+
+
+/*let results = {}
+function test(results) {
+    for (const { id, appliance } of recipes) {
+        if (!results[appliance]) results[appliance] = []
+        results[appliance].push({ id, appliance })
+        console.log(appliance)
+    }
+}
+
+test(results)*/
+
+
+
+/*function appliancesDropdown(results) {
+    results.forEach(result => {
+        let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${result}</div>`
+        appliancesContainer.innerHTML += appliancesListItem
+
+    })
+}
+
+appliancesDropdown(results)*/
+
+/*let newAppliancesArray = []
+
+function removeDuplicateAppliances(newAppliancesArray) {
+    recipes.map(recipe => {
+        newAppliancesArray.push(recipe.appliance)
+    })
+    return newAppliancesArray.filter((item, index) => newAppliancesArray.indexOf(item) === index)
+}*/
+
 
 
 
@@ -81,14 +183,14 @@ appliancesDropdown(appliancesFilteredArray)
 let newUstensilsArray = []
 
 function removeDuplicateUstensils(newUstensilsArray) {
-    recipes.forEach((recipe) => {
-        let ustensil = recipe.ustensils
-        recipe.ustensils.forEach((ustensil) => {
+    recipes.map(recipe => {
+        recipe.ustensils.map(ustensil => {
             newUstensilsArray.push(ustensil)
         })
     })
     return newUstensilsArray.filter((item, index) => newUstensilsArray.indexOf(item) === index)
 }
+
 
 
 // Capitalize ustensil names
@@ -108,7 +210,7 @@ function capitalizeWords(array) {
 let ustensilsFilteredCapitalizedArray = capitalizeWords(ustensilsFilteredArray)
 
 function ustensilsDropdown(ustensils) {
-    ustensils.forEach((ustensil) => {
+    ustensils.map(ustensil => {
         let ustensilsListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${ustensil}</div>`
         ustensilsContainer.innerHTML += ustensilsListItem
     })

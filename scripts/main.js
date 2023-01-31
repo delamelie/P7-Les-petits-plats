@@ -4,7 +4,6 @@ import { recipes } from "/data/recipes.js"
 const recipesContainer = document.querySelector(".recipes-container")
 
 function createRecipeCard(recipe) {
-
     const divCard = document.createElement("div")
     const image = document.createElement("img")
     const divRecipe = document.createElement("div")
@@ -75,6 +74,10 @@ function displayRecipes() {
 }
 displayRecipes(recipes)
 
+
+
+
+
 /////////////////////////// Create flat array containing all searchable keywords///////////////////////////
 
 let newRecipeArray = recipes.map(recipe => {
@@ -86,7 +89,6 @@ let newRecipeArray = recipes.map(recipe => {
 });
 
 
-
 ///////////////////////// Create search funtion on input///////////////////////////////////////////////////
 
 
@@ -95,36 +97,36 @@ const input = document.querySelector(".search-bar-input")
 input.addEventListener("input", searchRecipes)
 
 
-
 function searchRecipes() {
     if (input.value.length >= 3) {
         let searchResultsStore = []
-        console.log('3')
         newRecipeArray.forEach(recipe => {
             let wordsTostring = recipe.words.toString()
             let inputValue = input.value.toLowerCase()
             if (wordsTostring.includes(inputValue) ||
                 wordsTostring.split(" ").includes(inputValue)) {
                 searchResultsStore.push({ id: recipe.id });
-                console.log('includes')
+                let updatedArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id));
+                console.log(updatedArray)
+                recipesContainer.textContent = ''
+                updatedArray.forEach((recipe) => {
+                    const recipesContainer = document.querySelector(".recipes-container")
+                    recipesContainer.appendChild(createRecipeCard(recipe))
+                })
+            } else {
+                console.log('no')
+                /*recipesContainer.textContent = ''
+                recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."*/
             }
         })
-        let updatedArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id));
-        console.log(updatedArray)
+
+    } else {
         recipesContainer.textContent = ''
-        updatedArray.forEach((recipe) => {
-            const recipesContainer = document.querySelector(".recipes-container")
-            recipesContainer.appendChild(createRecipeCard(recipe))
-        })
-        console.log('yo')
+        displayRecipes(recipes)
     }
 }
 
 
-/*else {
-    recipesContainer.textContent = ''
-    recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
-}*/
 
 
 ////////////////////////////////////////////////

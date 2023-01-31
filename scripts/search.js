@@ -1,9 +1,9 @@
-/*import { recipes } from "/data/recipes.js"
+import { recipes } from "/data/recipes.js"
 
 
 /////////////////////////// Create flat array containing all searchable keywords///////////////////////////
 
-let newRecipeArray = recipes.map(recipe => {
+/*let newRecipeArray = recipes.map(recipe => {
     let words = []
     words.push(recipe.name.toLowerCase())
     words.push(recipe.description.toLowerCase())
@@ -52,28 +52,4 @@ function displaySelectedRecipes() {
 
 
 ///////////////////////////////////////////////////////////
-
-
-/*function searchRecipes() {
-    if (input.value.length >= 3) {
-        newRecipeArray.forEach(element => {
-            if (element.words.includes(input.value.toLowerCase())) {
-                console.log('yes')
-
-
-
-            recipesContainer.textContent = ''
-            displayRecipes(selectedRecipes)
-
-        } else {
-            recipesContainer.textContent = ''
-            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
-        }
-
-    }
-}*/
-
-
-
-
-
+*/
