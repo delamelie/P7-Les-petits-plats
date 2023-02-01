@@ -77,61 +77,6 @@ displayRecipes(recipes)
 
 
 
-
-/////////////////////////// Create flat array containing all searchable keywords///////////////////////////
-
-let newRecipeArray = recipes.map(recipe => {
-    let words = []
-    words.push(recipe.name.toLowerCase())
-    words.push(recipe.description.toLowerCase())
-    recipe.ingredients.forEach(ingredient => words.push(ingredient.ingredient.toLowerCase()))
-    return { id: recipe.id, words: words }
-});
-
-
-///////////////////////// Create search funtion on input///////////////////////////////////////////////////
-
-
-const input = document.querySelector(".search-bar-input")
-
-input.addEventListener("input", searchRecipes)
-
-
-function searchRecipes() {
-    if (input.value.length >= 3) {
-        let searchResultsStore = []
-        newRecipeArray.forEach(recipe => {
-            let wordsTostring = recipe.words.toString()
-            let inputValue = input.value.toLowerCase()
-            if (wordsTostring.includes(inputValue) ||
-                wordsTostring.split(" ").includes(inputValue)) {
-                searchResultsStore.push({ id: recipe.id });
-                let updatedArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id));
-                console.log(updatedArray)
-                recipesContainer.textContent = ''
-                updatedArray.forEach((recipe) => {
-                    const recipesContainer = document.querySelector(".recipes-container")
-                    recipesContainer.appendChild(createRecipeCard(recipe))
-                })
-            } else {
-                console.log('no')
-                /*recipesContainer.textContent = ''
-                recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."*/
-            }
-        })
-
-    } else {
-        recipesContainer.textContent = ''
-        displayRecipes(recipes)
-    }
-}
-
-
-
-
-////////////////////////////////////////////////
-
-
 /*
 // Create all recipes' cards
 function createRecipeCards(recipes) {
@@ -177,6 +122,149 @@ function createRecipeCards(recipes) {
 }
 
 createRecipeCards(recipes) */
+
+
+
+
+
+
+
+//////////////////////////////////////////////// Appliances//////
+
+const appliancesContainer = document.querySelector(".search-filters-appliances")
+
+
+const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
+    accumulator[appliance] = accumulator[appliance] || { appliance: appliance, ids: [] }
+    accumulator[appliance].ids.push(id)
+    return accumulator
+}, {})
+
+let newAppliancesArray = Object.values(reduceAppliances)
+
+
+function displayAppliancesTags(appliances) {
+    appliances.forEach(appliance => {
+        let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${appliance.appliance}</div>`
+        appliancesContainer.innerHTML += appliancesListItem
+
+    })
+}
+displayAppliancesTags(newAppliancesArray)
+
+
+
+
+/////////////////////////// Create flat array containing all searchable keywords///////////////////////////
+
+let newRecipeArray = recipes.map(recipe => {
+    let words = []
+    words.push(recipe.name.toLowerCase())
+    words.push(recipe.description.toLowerCase())
+    recipe.ingredients.forEach(ingredient => words.push(ingredient.ingredient.toLowerCase()))
+    return { id: recipe.id, words: words }
+});
+
+
+///////////////////////// Create search funtion on input///////////////////////////////////////////////////
+
+
+const input = document.querySelector(".search-bar-input")
+
+input.addEventListener("input", searchRecipes)
+
+
+/*function searchRecipes() {
+    if (input.value.length >= 3) {
+        let searchResultsStore = []
+        newRecipeArray.forEach(recipe => {
+            let wordsTostring = recipe.words.toString()
+            let inputValue = input.value.toLowerCase()
+            if (wordsTostring.includes(inputValue) ||
+                wordsTostring.split(" ").includes(inputValue)) {
+                searchResultsStore.push({ id: recipe.id });
+                console.log(searchResultsStore)
+                let updatedRecipesArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id));
+                console.log(updatedRecipesArray)
+                let updatedAppliancesArray = newAppliancesArray.filter(a => searchResultsStore.some(b => a.id === b.ids));
+                console.log(updatedAppliancesArray)
+                recipesContainer.textContent = ''
+                updatedRecipesArray.forEach((recipe) => {
+                    const recipesContainer = document.querySelector(".recipes-container")
+                    recipesContainer.appendChild(createRecipeCard(recipe))
+                })
+            } else {
+                console.log('no')
+                /*recipesContainer.textContent = ''
+                recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
+            }
+        })
+
+    } else {
+        recipesContainer.textContent = ''
+        displayRecipes(recipes)
+    }
+}*/
+
+
+
+function searchRecipes() {
+    if (input.value.length >= 3) {
+
+        //Create array to store recipes ids as results of user's search
+        let searchResultsStore = []
+        newRecipeArray.forEach(recipe => {
+            let wordsTostring = recipe.words.toString()
+            let inputValue = input.value.toLowerCase()
+            if (wordsTostring.includes(inputValue) ||
+                wordsTostring.split(" ").includes(inputValue)) {
+                searchResultsStore.push({ id: recipe.id });
+                console.log(searchResultsStore)
+
+                //Create array to retrieve recipes matching previously stored ids
+                let updatedRecipesArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id));
+
+                //Update recipes display accordingly
+                recipesContainer.textContent = ''
+                updatedRecipesArray.forEach((recipe) => {
+                    const recipesContainer = document.querySelector(".recipes-container")
+                    recipesContainer.appendChild(createRecipeCard(recipe))
+                })
+
+                //Create array to retrieve appliances matching previously stored ids
+                const updatedAppliancesArray = newAppliancesArray.filter(a => searchResultsStore.some(id => a.ids.includes(id.id)));
+                console.log(updatedAppliancesArray);
+
+                //Update appliances tags display accordingly
+                appliancesContainer.innerHTML = ""
+                updatedAppliancesArray.forEach(appliance => {
+                    let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${appliance.appliance}</div>`
+                    appliancesContainer.innerHTML += appliancesListItem
+
+                })
+
+            } else {
+                console.log('no')
+                /*recipesContainer.textContent = ""
+                recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."*/
+            }
+        })
+
+    } else {
+        recipesContainer.textContent = ""
+        displayRecipes(recipes)
+        appliancesContainer.innerHTML = ""
+        displayAppliancesTags(newAppliancesArray)
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
