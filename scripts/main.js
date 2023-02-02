@@ -1,6 +1,5 @@
 import { recipes } from "/data/recipes.js"
 
-
 const recipesContainer = document.querySelector(".recipes-container")
 
 function createRecipeCard(recipe) {
@@ -129,10 +128,10 @@ createRecipeCards(recipes) */
 
 
 
-//////////////////////////////////////////////// Appliances//////
+//////////////////////////////////////////////// Appliances////////////////////////////////////////////////
+
 
 const appliancesContainer = document.querySelector(".search-filters-appliances")
-
 
 const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
     accumulator[appliance] = accumulator[appliance] || { appliance: appliance, ids: [] }
@@ -141,16 +140,136 @@ const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
 }, {})
 
 let newAppliancesArray = Object.values(reduceAppliances)
+/*console.log(newAppliancesArray)*/
 
 
 function displayAppliancesTags(appliances) {
-    appliances.forEach(appliance => {
+    appliances.map(appliance => {
         let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${appliance.appliance}</div>`
         appliancesContainer.innerHTML += appliancesListItem
 
     })
 }
 displayAppliancesTags(newAppliancesArray)
+
+
+
+/////////////////////Ustensils//////////////////
+
+
+// Retrieve ustensils and remove duplicates
+
+const ustensilsContainer = document.querySelector(".search-filters-ustensils")
+
+let flattenUstensils = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })));
+console.log(flattenUstensils);
+
+const reduceUstensils = flattenUstensils.reduce((accumulator, { id, ustensil }) => {
+    accumulator[ustensil] = accumulator[ustensil] || { ustensil: ustensil, ids: [] }
+    accumulator[ustensil].ids.push(id)
+    return accumulator
+}, {})
+
+console.log(reduceUstensils)
+let newUstensilsArray = Object.values(reduceUstensils)
+console.log(newUstensilsArray)
+
+
+
+// Capitalize names
+
+function capitalizeWords(array) {
+    return array.map((word) => {
+        const capitalizedFirst = word.charAt(0).toUpperCase();
+        const rest = word.slice(1).toLowerCase();
+        return capitalizedFirst + rest;
+    });
+}
+
+
+// Display ustensils with capitalized names
+
+/*let ustensilsFilteredCapitalizedArray = capitalizeWords(newUstensilsArray)*/
+
+function displayUstensilsTags(ustensils) {
+    ustensils.map(ustensil => {
+        let ustensilsListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${ustensil.ustensil}</div>`
+        ustensilsContainer.innerHTML += ustensilsListItem
+
+    })
+}
+/*displayUstensilsTags(ustensilsFilteredCapitalizedArray)*/
+displayUstensilsTags(newUstensilsArray)
+
+
+
+/////////////////////////////////////////////////Ingredients/////////////////////
+
+
+const ingredientsContainer = document.querySelector(".search-filters-ingredients")
+
+/*let newIngredientsArray = recipes.map(recipe => {
+    let items = []
+    recipe.ingredients.map(ingredient => items.push(ingredient.ingredient))
+    items.filter((items, index, self) => {
+        return self.findIndex((v) => v.items === value.items) === index;
+    });
+
+});
+console.log(newIngredientsArray)
+
+
+
+let ingredientsFilteredArray = newIngredientsArray.filter((item, index) => newIngredientsArray.indexOf(item) === index)
+console.log(ingredientsFilteredArray)
+
+
+/*let newIngredientsArray = []
+
+function removeDuplicateIngredients() {
+    recipes.forEach(recipe => {
+        console.log(recipe.id)
+        newIngredientsArray.push(recipe.id)
+        console.log(newIngredientsArray)
+
+        recipe.ingredients.map(ingredient => {
+            newIngredientsArray.push(ingredient.ingredient)
+            /*console.log(newIngredientsArray)
+        })
+    })
+    return { id: recipe.id, ingredient }
+}
+
+
+
+
+
+
+/*let newIngredientsArray = []
+
+function removeDuplicateIngredients() {
+    recipes.map(recipe => {
+        recipe.ingredients.map(ingredient => {
+            newIngredientsArray.push(ingredient.ingredient)
+        })
+    })
+    return newIngredientsArray.filter((item, index) => newIngredientsArray.indexOf(item) === index)
+}
+
+
+// Display ingredients
+
+let ingredientsFilteredArray = removeDuplicateIngredients(newIngredientsArray)
+
+function ingredientsDropdown(ingredients) {
+    ingredients.map(ingredient => {
+        let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${ingredient}</div>`
+        ingredientsContainer.innerHTML += ingredientsListItem
+    })
+}
+
+ingredientsDropdown(ingredientsFilteredArray)*/
+
 
 
 
@@ -243,6 +362,18 @@ function searchRecipes() {
 
                 })
 
+                //Create array to retrieve ustensils matching previously stored ids
+                const updatedUstensilsArray = newUstensilsArray.filter(a => searchResultsStore.some(id => a.ids.includes(id.id)));
+                console.log(updatedUstensilsArray);
+
+                //Update ustensils tags display accordingly
+                ustensilsContainer.innerHTML = ""
+                updatedUstensilsArray.forEach(ustensil => {
+                    let ustensilsListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${ustensil.ustensil}</div>`
+                    ustensilsContainer.innerHTML += ustensilsListItem
+
+                })
+
             } else {
                 console.log('no')
                 /*recipesContainer.textContent = ""
@@ -255,6 +386,8 @@ function searchRecipes() {
         displayRecipes(recipes)
         appliancesContainer.innerHTML = ""
         displayAppliancesTags(newAppliancesArray)
+        ustensilsContainer.innerHTML = ""
+        displayUstensilsTags(newUstensilsArray)
     }
 }
 

@@ -14,7 +14,7 @@ const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
 
 // Retrieve ingredients and remove duplicates
 
-let newIngredientsArray = []
+/*let newIngredientsArray = []
 
 function removeDuplicateIngredients() {
     recipes.map(recipe => {
@@ -38,7 +38,7 @@ function ingredientsDropdown(ingredients) {
 }
 
 ingredientsDropdown(ingredientsFilteredArray)
-
+*/
 
 /////////////////////Appliances//////////////////
 
@@ -69,11 +69,12 @@ appliancesDropdown(appliancesFilteredArray)*/
 
 
 
+
 /////////////////////Ustensils//////////////////
 
 // Retrieve ustensils and remove duplicates
 
-let newUstensilsArray = []
+/*let newUstensilsArray = []
 
 function removeDuplicateUstensils(newUstensilsArray) {
     recipes.map(recipe => {
@@ -109,7 +110,7 @@ function ustensilsDropdown(ustensils) {
     })
 }
 
-ustensilsDropdown(ustensilsFilteredCapitalizedArray)
+ustensilsDropdown(ustensilsFilteredCapitalizedArray)*/
 
 
 
