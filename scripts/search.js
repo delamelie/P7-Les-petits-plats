@@ -27,47 +27,29 @@ let newRecipeArray = recipes.map(recipe => {
 ///////////////////////// Create search funtion on input///////////////////////////////////////////////////
 
 
-const input = document.querySelector(".search-bar-input")
-input.addEventListener("input", searchRecipes)
+const inputSearchBar = document.querySelector(".search-bar-input")
+inputSearchBar.addEventListener("input", searchRecipes)
 
+
+/*let searchResultsStore = []*/
 
 function searchRecipes() {
-    if (input.value.length >= 3) {
+    if (inputSearchBar.value.length >= 3) {
 
         //Create array to store recipes ids as results of user's search
         let searchResultsStore = []
-        let inputValue = input.value.toLowerCase()
+        let inputValue = inputSearchBar.value.toLowerCase()
 
         newRecipeArray.forEach(recipe => {
             let wordsTostring = recipe.words.toString()
             if (wordsTostring.includes(inputValue) ||
                 wordsTostring.split(" ").includes(inputValue)) {
                 searchResultsStore.push({ id: recipe.id })
-                console.log(searchResultsStore)
 
-                //Create array to retrieve recipes matching previously stored ids and update recipes display accordingly
-                let updatedRecipesArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id))
-                recipesContainer.textContent = ''
-                /*displayRecipes(updatedRecipesArray)*/
-                updatedRecipesArray.forEach((recipe) => {
-                    recipesContainer.appendChild(createRecipeCard(recipe))
-                })
-
-                //Create array to retrieve ingredients matching previously stored ids and update ingredients tags display accordingly
-                const updatedIngredientsArray = newIngredientsArray.filter(a => searchResultsStore.some(id => a.ids.includes(id.id)))
-                ingredientsContainer.innerHTML = ""
-                displayIngredientsTags(updatedIngredientsArray)
-
-                //Create array to retrieve appliances matching previously stored ids and update appliances tags display accordingly
-                const updatedAppliancesArray = newAppliancesArray.filter(a => searchResultsStore.some(id => a.ids.includes(id.id)))
-                appliancesContainer.innerHTML = ""
-                displayAppliancesTags(updatedAppliancesArray)
-
-                //Create array to retrieve ustensils matching previously stored ids and update ustensils tags display accordingly
-                const updatedUstensilsArray = newUstensilsArray.filter(a => searchResultsStore.some(id => a.ids.includes(id.id)))
-                ustensilsContainer.innerHTML = ""
-                displayUstensilsTags(updatedUstensilsArray)
-
+                updateRecipes(searchResultsStore)
+                updateIngredients(searchResultsStore)
+                updateAppliances(searchResultsStore)
+                updateUstensils(searchResultsStore)
             }
         })
         if (searchResultsStore.length === 0) {
@@ -87,10 +69,45 @@ function searchRecipes() {
     }
 }
 
-/*input.addEventListener("input", newArrayRecipes)
-let searchResultsStore = []
 
-function newArrayRecipes() {
+
+//Create array to retrieve recipes matching previously stored ids and update recipes display accordingly
+
+function updateRecipes(searchResultsStore) {
+    let updatedRecipesArray = recipes.filter(recipe => searchResultsStore.some(result => recipe.id === result.id))
+    recipesContainer.textContent = ''
+    /*displayRecipes(updatedRecipesArray)*/
+    updatedRecipesArray.forEach((recipe) => {
+        recipesContainer.appendChild(createRecipeCard(recipe))
+    })
+}
+
+
+//Create arrays to retrieve ingredients, applainces and ustensils matching previously stored ids and update tags display accordingly
+
+function updateIngredients(searchResultsStore) {
+    const updatedIngredientsArray = newIngredientsArray.filter(ingredient => searchResultsStore.some(id => ingredient.ids.includes(id.id)))
+    ingredientsContainer.innerHTML = ""
+    displayIngredientsTags(updatedIngredientsArray)
+}
+
+
+function updateAppliances(searchResultsStore) {
+    const updatedAppliancesArray = newAppliancesArray.filter(appliance => searchResultsStore.some(id => appliance.ids.includes(id.id)))
+    appliancesContainer.innerHTML = ""
+    displayAppliancesTags(updatedAppliancesArray)
+}
+
+
+function updateUstensils(searchResultsStore) {
+    const updatedUstensilsArray = newUstensilsArray.filter(ustensil => searchResultsStore.some(id => ustensil.ids.includes(id.id)))
+    ustensilsContainer.innerHTML = ""
+    displayUstensilsTags(updatedUstensilsArray)
+}
+
+
+
+/*function newArrayRecipes() {
     if (input.value.length >= 3) {
 
         let inputValue = input.value.toLowerCase()
@@ -101,32 +118,19 @@ function newArrayRecipes() {
                 wordsTostring.split(" ").includes(inputValue)) {
                 searchResultsStore.push({ id: recipe.id })
                 console.log(searchResultsStore)
+                searchRecipes()
                 return searchResultsStore
             }
         })
+
     }
-}
+}*/
 
 
 
 
 
-function searchRecipes() {
-    if (input.value.length >= 3) {
-        console.log(searchResultsStore)
-        let updatedRecipesArray = recipes.filter(a => searchResultsStore.some(b => a.id === b.id))
-        recipesContainer.textContent = ''
-        updatedRecipesArray.forEach((recipe) => {
-            recipesContainer.appendChild(createRecipeCard(recipe))
-        })
-        if (searchResultsStore.length === 0) {
-            recipesContainer.textContent = ""
-            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
-        }
 
-    } else {
-        recipesContainer.textContent = ""
-        displayRecipes(recipes)
-    }
-}
-searchRecipes()*/
+
+
+

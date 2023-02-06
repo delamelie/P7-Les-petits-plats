@@ -31,6 +31,9 @@ export let newIngredientsArray = Object.values(reduceIngredients)
 console.log(newIngredientsArray)
 
 
+
+
+
 // Display ingredients
 
 export function displayIngredientsTags(ingredients) {
@@ -54,7 +57,7 @@ const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
 }, {})
 
 export let newAppliancesArray = Object.values(reduceAppliances)
-console.log(newAppliancesArray)
+/*console.log(newAppliancesArray)*/
 
 
 export function displayAppliancesTags(appliances) {
@@ -84,19 +87,31 @@ const reduceUstensils = flattenUstensils.reduce((accumulator, { id, ustensil }) 
 
 /*console.log(reduceUstensils)*/
 export let newUstensilsArray = Object.values(reduceUstensils)
-console.log(newUstensilsArray)
+/*console.log(newUstensilsArray)*/
 
+
+
+/*const test = newUstensilsArray.map(ustensil => {
+    console.log(ustensil.ustensil)
+    let wordtest = ustensil.ustensil
+    return wordtest
+})
+console.log(test)
 
 
 // Capitalize names
 
 function capitalizeWords(array) {
     return array.map((word) => {
-        const capitalizedFirst = word.charAt(0).toUpperCase()
+        const firstLetter = word.charAt(0).toUpperCase()
         const rest = word.slice(1).toLowerCase()
-        return capitalizedFirst + rest
+        return firstLetter + rest
     })
-}
+}*/
+
+
+
+
 
 
 // Display ustensils with capitalized names
@@ -112,6 +127,11 @@ export function displayUstensilsTags(ustensils) {
 }
 /*displayUstensilsTags(ustensilsFilteredCapitalizedArray)*/
 displayUstensilsTags(newUstensilsArray)
+
+
+
+
+
 
 
 
