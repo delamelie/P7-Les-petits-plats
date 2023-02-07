@@ -1,7 +1,5 @@
 import { recipes } from "/data/recipes.js"
 
-
-
 /////////////////////////////DOM elements/////////////////////////
 
 export const ingredientsContainer = document.querySelector(".search-filters-ingredients")
@@ -15,8 +13,7 @@ const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
 
 // Retrieve ingredients and remove duplicates
 
-const flattenIngredients = recipes.map(({ id, ingredients }) => ingredients.map(({ ingredient }) => ({ id, ingredient }))
-)
+const flattenIngredients = recipes.map(({ id, ingredients }) => ingredients.map(({ ingredient }) => ({ id, ingredient })))
     .flat()
 
 
@@ -26,19 +23,14 @@ const reduceIngredients = flattenIngredients.reduce((accumulator, { id, ingredie
     return accumulator
 }, {})
 
-/*console.log(reduceIngredients)*/
-export let newIngredientsArray = Object.values(reduceIngredients)
-console.log(newIngredientsArray)
-
-
-
+export const newIngredientsArray = Object.values(reduceIngredients)
 
 
 // Display ingredients
 
 export function displayIngredientsTags(ingredients) {
     ingredients.forEach(ingredient => {
-        let ingredientsListItem = `<div class="item-filtered-ingredient col-4 text-start gx-0">${ingredient.ingredient}</div>`
+        let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
         ingredientsContainer.innerHTML += ingredientsListItem
     })
 }
@@ -57,12 +49,11 @@ const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
 }, {})
 
 export let newAppliancesArray = Object.values(reduceAppliances)
-/*console.log(newAppliancesArray)*/
 
 
 export function displayAppliancesTags(appliances) {
     appliances.forEach(appliance => {
-        let appliancesListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${appliance.appliance}</div>`
+        let appliancesListItem = `<div class="item-filtered item-filtered-appliance col-4 text-start gx-0" role="button">${appliance.appliance}</div>`
         appliancesContainer.innerHTML += appliancesListItem
     })
 }
@@ -75,9 +66,7 @@ displayAppliancesTags(newAppliancesArray)
 
 // Retrieve ustensils and remove duplicates
 
-
-let flattenUstensils = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })))
-
+const flattenUstensils = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })))
 
 const reduceUstensils = flattenUstensils.reduce((accumulator, { id, ustensil }) => {
     accumulator[ustensil] = accumulator[ustensil] || { ustensil: ustensil, ids: [] }
@@ -85,10 +74,7 @@ const reduceUstensils = flattenUstensils.reduce((accumulator, { id, ustensil }) 
     return accumulator
 }, {})
 
-/*console.log(reduceUstensils)*/
-export let newUstensilsArray = Object.values(reduceUstensils)
-/*console.log(newUstensilsArray)*/
-
+export const newUstensilsArray = Object.values(reduceUstensils)
 
 
 /*const test = newUstensilsArray.map(ustensil => {
@@ -111,27 +97,18 @@ function capitalizeWords(array) {
 
 
 
-
-
-
 // Display ustensils with capitalized names
 
 /*let ustensilsFilteredCapitalizedArray = capitalizeWords(newUstensilsArray)*/
 
 export function displayUstensilsTags(ustensils) {
     ustensils.forEach(ustensil => {
-        let ustensilsListItem = `<div class="item-filtered-appliance col-4 text-start gx-0">${ustensil.ustensil}</div>`
+        let ustensilsListItem = `<div class="item-filtered item-filtered-ustensil col-4 text-start gx-0" role="button">${ustensil.ustensil}</div>`
         ustensilsContainer.innerHTML += ustensilsListItem
-
     })
 }
 /*displayUstensilsTags(ustensilsFilteredCapitalizedArray)*/
 displayUstensilsTags(newUstensilsArray)
-
-
-
-
-
 
 
 

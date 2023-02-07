@@ -21,7 +21,7 @@ let newRecipeArray = recipes.map(recipe => {
     words.push(recipe.description.toLowerCase())
     recipe.ingredients.forEach(ingredient => words.push(ingredient.ingredient.toLowerCase()))
     return { id: recipe.id, words: words }
-});
+})
 
 
 ///////////////////////// Create search funtion on input///////////////////////////////////////////////////
@@ -41,15 +41,12 @@ function searchRecipes() {
         let inputValue = inputSearchBar.value.toLowerCase()
 
         newRecipeArray.forEach(recipe => {
-            let wordsTostring = recipe.words.toString()
+            const wordsTostring = recipe.words.toString()
             if (wordsTostring.includes(inputValue) ||
                 wordsTostring.split(" ").includes(inputValue)) {
                 searchResultsStore.push({ id: recipe.id })
-
                 updateRecipes(searchResultsStore)
-                updateIngredients(searchResultsStore)
-                updateAppliances(searchResultsStore)
-                updateUstensils(searchResultsStore)
+                updateTags(searchResultsStore)
             }
         })
         if (searchResultsStore.length === 0) {
@@ -70,10 +67,9 @@ function searchRecipes() {
 }
 
 
-
 //Create array to retrieve recipes matching previously stored ids and update recipes display accordingly
 
-function updateRecipes(searchResultsStore) {
+export function updateRecipes(searchResultsStore) {
     let updatedRecipesArray = recipes.filter(recipe => searchResultsStore.some(result => recipe.id === result.id))
     recipesContainer.textContent = ''
     /*displayRecipes(updatedRecipesArray)*/
@@ -83,27 +79,20 @@ function updateRecipes(searchResultsStore) {
 }
 
 
-//Create arrays to retrieve ingredients, applainces and ustensils matching previously stored ids and update tags display accordingly
+//Create arrays to retrieve ingredients, appliances and ustensils matching previously stored ids and update tags display accordingly
 
-function updateIngredients(searchResultsStore) {
-    const updatedIngredientsArray = newIngredientsArray.filter(ingredient => searchResultsStore.some(id => ingredient.ids.includes(id.id)))
+function updateTags(searchResultsStore) {
+    let updatedIngredientsArray = newIngredientsArray.filter(ingredient => searchResultsStore.some(id => ingredient.ids.includes(id.id)))
     ingredientsContainer.innerHTML = ""
     displayIngredientsTags(updatedIngredientsArray)
-}
-
-
-function updateAppliances(searchResultsStore) {
-    const updatedAppliancesArray = newAppliancesArray.filter(appliance => searchResultsStore.some(id => appliance.ids.includes(id.id)))
+    let updatedAppliancesArray = newAppliancesArray.filter(appliance => searchResultsStore.some(id => appliance.ids.includes(id.id)))
     appliancesContainer.innerHTML = ""
     displayAppliancesTags(updatedAppliancesArray)
-}
-
-
-function updateUstensils(searchResultsStore) {
-    const updatedUstensilsArray = newUstensilsArray.filter(ustensil => searchResultsStore.some(id => ustensil.ids.includes(id.id)))
+    let updatedUstensilsArray = newUstensilsArray.filter(ustensil => searchResultsStore.some(id => ustensil.ids.includes(id.id)))
     ustensilsContainer.innerHTML = ""
     displayUstensilsTags(updatedUstensilsArray)
 }
+
 
 
 
