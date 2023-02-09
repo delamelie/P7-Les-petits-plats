@@ -18,6 +18,9 @@ const inputUstensils = document.querySelector(".input-ustensils")
 let selectedIngredient = document.querySelectorAll(".item-filtered-ingredient")
 let selectedAppliance = document.querySelectorAll(".item-filtered-appliance")
 let selectedUstensil = document.querySelectorAll(".item-filtered-ustensil")
+let tagsContainer = document.querySelector(".tags-container")
+let tagsXBtn = document.querySelectorAll(".fa-circle-xmark")
+let clickedItemBtn = document.querySelectorAll(".clicked-item")
 
 inputIngredients.addEventListener("input", searchIngredients)
 inputAppliances.addEventListener("input", searchAppliances)
@@ -40,12 +43,14 @@ function searchIngredients() {
 }
 
 /*newIngredientsArray.forEach(ingredient => {
+    let test = []
         let ingredientTostring = ingredient.toString()
         if (ingredientTostring.includes(inputIngredientsValue) ||
             ingredientTostring.split(" ").includes(inputIngredientsValue)) {
-
+test.push({ id: recipe.id })
         }
     })*/
+
 
 function updateIngredientsOnInput(ingredientsFilterByTag) {
     const updatedIngredientsArray = newIngredientsArray.filter(ingredient => ingredientsFilterByTag.some(result => ingredient.ids === result.ids))
@@ -100,23 +105,29 @@ function updateUstensilsOnInput(ustensilsFilterByTag) {
 //////////////////////////////// Search by clicking tag //////////////////
 
 let retrieveIds
+let clickedItem
 
 //// Ingredients/////
 
+
 const clickedIngredient = selectedIngredient.forEach(ingredient => {
     ingredient.addEventListener('click', function clickTag(event) {
-        let clickedItem = event.target.innerText
+        clickedItem = event.target.innerText
+        console.log(clickedItem)
         retrieveIds = newIngredientsArray.filter((ingredient) => (ingredient.ingredient === clickedItem)).map(ingredient => ({ id: ingredient.ids })).flatMap(({ id }) => id.map(id => ({ id })))
+        createSelectedTag()
         updateTagsRecipesOnClick(retrieveIds)
     });
 });
+
 
 //// Appliances/////
 
 const clickedAppliance = selectedAppliance.forEach(appliance => {
     appliance.addEventListener('click', function clickTag(event) {
-        let clickedItem = event.target.innerText
+        clickedItem = event.target.innerText
         retrieveIds = newAppliancesArray.filter((appliance) => (appliance.appliance === clickedItem)).map(appliance => ({ id: appliance.ids })).flatMap(({ id }) => id.map(id => ({ id })))
+        createSelectedTag()
         updateTagsRecipesOnClick(retrieveIds)
     });
 });
@@ -125,8 +136,9 @@ const clickedAppliance = selectedAppliance.forEach(appliance => {
 
 const clickedUstensil = selectedUstensil.forEach(ustensil => {
     ustensil.addEventListener('click', function clickTag(event) {
-        let clickedItem = event.target.innerText
+        clickedItem = event.target.innerText
         retrieveIds = newUstensilsArray.filter((ustensil) => (ustensil.ustensil === clickedItem)).map(ustensil => ({ id: ustensil.ids })).flatMap(({ id }) => id.map(id => ({ id })))
+        createSelectedTag()
         updateTagsRecipesOnClick(retrieveIds)
     });
 });
@@ -147,4 +159,26 @@ function updateTagsRecipesOnClick(retrieveIds) {
     ustensilsContainer.innerHTML = ""
     displayUstensilsTags(ustensilsIds)
 }
+
+
+/////////////// Generic function to display selected tags above dropdowns //////////////
+
+function createSelectedTag() {
+    let selectedTag =
+        `<span class="clicked-item fw-bold color--primary rounded p-2">${clickedItem}
+            <span class="fa-regular fa-circle-xmark ms-3" role="button" type="button"></span>
+        </span>`
+    tagsContainer.innerHTML = selectedTag
+}
+
+
+
+const removeTags = document.querySelectorAll(".fa-circle-xmark").forEach(button => {
+    console.log(button)
+    button.addEventListener("click", function removeTag(event) {
+        console.log('yo')
+
+    });
+});
+
 

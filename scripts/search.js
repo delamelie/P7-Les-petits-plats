@@ -96,30 +96,3 @@ function updateTags(searchResultsStore) {
 
 
 
-/*function newArrayRecipes() {
-    if (input.value.length >= 3) {
-
-        let inputValue = input.value.toLowerCase()
-
-        newRecipeArray.forEach(recipe => {
-            let wordsTostring = recipe.words.toString()
-            if (wordsTostring.includes(inputValue) ||
-                wordsTostring.split(" ").includes(inputValue)) {
-                searchResultsStore.push({ id: recipe.id })
-                console.log(searchResultsStore)
-                searchRecipes()
-                return searchResultsStore
-            }
-        })
-
-    }
-}*/
-
-
-
-
-
-
-
-
-

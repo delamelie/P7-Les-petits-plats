@@ -101,37 +101,55 @@ body .search-bar-recipe .fa-magnifying-glass {
   right: 20px;
   font-size: 30px;
 }
-body .search-filters {
+body .tags-section {
+  color: #ffffff;
+}
+body .tags-section .color--primary {
+  background-color: #3282F7;
+}
+body .tags-section .color--secondary {
+  background-color: #68D9A4;
+}
+body .tags-section .color--tertiary {
+  background-color: #ED6454;
+}
+body .tags-section .clicked-item {
+  font-size: 0.8em;
+}
+body .tags-section .clicked-item .fa-circle-xmark {
+  font-size: 1.4em;
+}
+body .tags-section .search-filters {
   /*&-category {
       max-height: 400px;
       overflow-y: scroll;
   }*/
 }
-body .search-filters-button {
+body .tags-section .search-filters-button {
   font-size: 1.1em;
   color: #ffffff;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
 }
-body .search-filters .accordion-button:not(.collapsed) {
+body .tags-section .search-filters .color--primary {
+  background-color: #3282F7;
+}
+body .tags-section .search-filters .color--secondary {
+  background-color: #68D9A4;
+}
+body .tags-section .search-filters .color--tertiary {
+  background-color: #ED6454;
+}
+body .tags-section .search-filters .accordion-button:not(.collapsed) {
   color: #ffffff;
 }
-body .search-filters .accordion-button:not(.collapsed)::after {
+body .tags-section .search-filters .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   transform: rotate(-180deg);
 }
-body .search-filters .accordion-button.collapsed::after {
+body .tags-section .search-filters .accordion-button.collapsed::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
-body .search-filters .color--primary {
-  background-color: #3282F7;
-}
-body .search-filters .color--secondary {
-  background-color: #68D9A4;
-}
-body .search-filters .color--tertiary {
-  background-color: #ED6454;
-}
-body .search-filters-dropdown {
+body .tags-section .search-filters-dropdown {
   color: #ffffff;
   border: none;
   position: relative;
@@ -140,33 +158,33 @@ body .search-filters-dropdown {
   width: fit-content;
   block-size: fit-content;*/
 }
-body .search-filters-tags {
+body .tags-section .search-filters-tags {
   /*display: none;*/
   background-color: #3282F7;
   /*position: absolute;
   top: 0;
   z-index: 100;*/
 }
-body .search-filters form input {
+body .tags-section .search-filters form input {
   width: 90%;
   height: 70px;
   text-indent: 20px;
   /*font-size: 1em;*/
   color: #ffffff;
 }
-body .search-filters form input:focus {
+body .tags-section .search-filters form input:focus {
   outline: none;
 }
-body .search-filters form .input__color--primary::placeholder {
+body .tags-section .search-filters form .input__color--primary::placeholder {
   color: #94befb;
 }
-body .search-filters form .input__color--secondary::placeholder {
+body .tags-section .search-filters form .input__color--secondary::placeholder {
   color: #b9eed5;
 }
-body .search-filters form .input__color--tertiary::placeholder {
+body .tags-section .search-filters form .input__color--tertiary::placeholder {
   color: #f7b8b0;
 }
-body .search-filters form .fa-chevron-up {
+body .tags-section .search-filters form .fa-chevron-up {
   color: #ffffff;
 }
 body .recipes-container .card {

@@ -11,19 +11,26 @@ const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
 /////////////////////////////////////////////////Ingredients/////////////////////
 
 
-// Retrieve ingredients and remove duplicates
+// Retrieve ingredients and capitalize names
 
-const flattenIngredients = recipes.map(({ id, ingredients }) => ingredients.map(({ ingredient }) => ({ id, ingredient })))
+export let newIngredientsArray = recipes.map(({ id, ingredients }) => ingredients.map(({ ingredient }) => ({ id, ingredient })))
     .flat()
 
+newIngredientsArray = newIngredientsArray.map(ingredient => {
+    let word = ingredient.ingredient
+    return { id: ingredient.id, ingredient: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() }
+})
 
-const reduceIngredients = flattenIngredients.reduce((accumulator, { id, ingredient }) => {
+
+// Remove duplicates
+
+newIngredientsArray = newIngredientsArray.reduce((accumulator, { id, ingredient }) => {
     accumulator[ingredient] = accumulator[ingredient] || { ingredient: ingredient, ids: [] }
     accumulator[ingredient].ids.push(id)
     return accumulator
 }, {})
 
-export const newIngredientsArray = Object.values(reduceIngredients)
+newIngredientsArray = Object.values(newIngredientsArray)
 
 
 // Display ingredients
@@ -42,14 +49,18 @@ displayIngredientsTags(newIngredientsArray)
 //////////////////////////////////////////////// Appliances////////////////////////////////////////////////
 
 
-const reduceAppliances = recipes.reduce((accumulator, { id, appliance }) => {
+// Retrieve appliances and remove duplicates
+
+export let newAppliancesArray = recipes.reduce((accumulator, { id, appliance }) => {
     accumulator[appliance] = accumulator[appliance] || { appliance: appliance, ids: [] }
     accumulator[appliance].ids.push(id)
     return accumulator
 }, {})
 
-export let newAppliancesArray = Object.values(reduceAppliances)
+newAppliancesArray = Object.values(newAppliancesArray)
 
+
+// Display appliances
 
 export function displayAppliancesTags(appliances) {
     appliances.forEach(appliance => {
@@ -64,42 +75,29 @@ displayAppliancesTags(newAppliancesArray)
 /////////////////////Ustensils//////////////////
 
 
-// Retrieve ustensils and remove duplicates
+// Retrieve ustensils and capitalize names
 
-const flattenUstensils = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })))
+export let newUstensilsArray = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })))
 
-const reduceUstensils = flattenUstensils.reduce((accumulator, { id, ustensil }) => {
+newUstensilsArray = newUstensilsArray.map(ustensil => {
+    let word = ustensil.ustensil
+    return { id: ustensil.id, ustensil: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() }
+})
+
+
+// Remove duplicates
+
+newUstensilsArray = newUstensilsArray.reduce((accumulator, { id, ustensil }) => {
     accumulator[ustensil] = accumulator[ustensil] || { ustensil: ustensil, ids: [] }
     accumulator[ustensil].ids.push(id)
     return accumulator
 }, {})
 
-export const newUstensilsArray = Object.values(reduceUstensils)
+newUstensilsArray = Object.values(newUstensilsArray)
+console.log(newUstensilsArray)
 
 
-/*const test = newUstensilsArray.map(ustensil => {
-    console.log(ustensil.ustensil)
-    let wordtest = ustensil.ustensil
-    return wordtest
-})
-console.log(test)
-
-
-// Capitalize names
-
-function capitalizeWords(array) {
-    return array.map((word) => {
-        const firstLetter = word.charAt(0).toUpperCase()
-        const rest = word.slice(1).toLowerCase()
-        return firstLetter + rest
-    })
-}*/
-
-
-
-// Display ustensils with capitalized names
-
-/*let ustensilsFilteredCapitalizedArray = capitalizeWords(newUstensilsArray)*/
+// Display ustensils
 
 export function displayUstensilsTags(ustensils) {
     ustensils.forEach(ustensil => {
@@ -107,10 +105,7 @@ export function displayUstensilsTags(ustensils) {
         ustensilsContainer.innerHTML += ustensilsListItem
     })
 }
-/*displayUstensilsTags(ustensilsFilteredCapitalizedArray)*/
 displayUstensilsTags(newUstensilsArray)
-
-
 
 
 
@@ -145,6 +140,8 @@ openFilters()*/
         }))
 }
 closeFilters()*/
+
+
 
 
 
