@@ -8,7 +8,6 @@ import { displayUstensilsTags } from "./tags-display.js"
 import { newIngredientsArray } from "./tags-display.js"
 import { newAppliancesArray } from "./tags-display.js"
 import { newUstensilsArray } from "./tags-display.js"
-import { createRecipeCard } from "./recipe-card.js"
 import { recipesContainer } from "./recipe-card.js"
 import { displayRecipes } from "./recipe-card.js"
 
@@ -50,10 +49,8 @@ function searchRecipes() {
             }
         })
         if (searchResultsStore.length === 0) {
-            recipesContainer.textContent = ""
             recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
         }
-
     } else {
         recipesContainer.textContent = ""
         displayRecipes(recipes)
@@ -72,10 +69,7 @@ function searchRecipes() {
 export function updateRecipes(searchResultsStore) {
     let updatedRecipesArray = recipes.filter(recipe => searchResultsStore.some(result => recipe.id === result.id))
     recipesContainer.textContent = ''
-    /*displayRecipes(updatedRecipesArray)*/
-    updatedRecipesArray.forEach((recipe) => {
-        recipesContainer.appendChild(createRecipeCard(recipe))
-    })
+    displayRecipes(updatedRecipesArray)
 }
 
 

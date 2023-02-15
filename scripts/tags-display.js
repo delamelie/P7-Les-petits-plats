@@ -94,7 +94,6 @@ newUstensilsArray = newUstensilsArray.reduce((accumulator, { id, ustensil }) => 
 }, {})
 
 newUstensilsArray = Object.values(newUstensilsArray)
-console.log(newUstensilsArray)
 
 
 // Display ustensils
@@ -106,6 +105,9 @@ export function displayUstensilsTags(ustensils) {
     })
 }
 displayUstensilsTags(newUstensilsArray)
+
+
+
 
 
 

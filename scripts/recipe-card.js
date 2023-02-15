@@ -66,7 +66,7 @@ export function createRecipeCard(recipe) {
 }
 
 
-export function displayRecipes() {
+export function displayRecipes(recipes) {
     recipes.forEach((recipe) => {
         recipesContainer.appendChild(createRecipeCard(recipe))
     })
