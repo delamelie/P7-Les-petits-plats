@@ -409,6 +409,7 @@ export const recipes = [
         "ustensils": ["couteau", "cuillère à melon"]
     }, {
         "id": 12,
+        "picture": "images/compote-pomme-rhubarbe.jpg",
         "name": "Compote pomme rhubarbe",
         "servings": 4,
         "ingredients": [
@@ -652,6 +653,7 @@ export const recipes = [
     },
     {
         "id": 19,
+        "picture": "images/shake-banane-kiwi.jpg",
         "name": "Shake Banane Kiwi",
         "servings": 4,
         "ingredients": [
@@ -799,6 +801,7 @@ export const recipes = [
     },
     {
         "id": 23,
+        "picture": "images/quiche-lorraine.jpg",
         "name": "Quiche lorraine",
         "servings": 4,
         "ingredients": [
@@ -947,6 +950,7 @@ export const recipes = [
     },
     {
         "id": 27,
+        "picture": "images/soupe-oseille.jpg",
         "name": "Soupe à l'oseille",
         "servings": 4,
         "ingredients": [
@@ -1090,7 +1094,7 @@ export const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Petits poids",
+                "ingredient": "Petits pois",
                 "quantity": 100,
                 "unit": "grammes"
             },
@@ -1254,6 +1258,7 @@ export const recipes = [
     },
     {
         "id": 36,
+        "picture": "images/lasagnes-courgettes-chèvre.jpg",
         "name": "Lasagne Courgettes et Chèvre",
         "servings": 2,
         "ingredients": [
@@ -1365,6 +1370,7 @@ export const recipes = [
     },
     {
         "id": 39,
+        "picture": "images/crumble-pommes.jpg",
         "name": "Crumble aux pommes",
         "servings": 40,
         "ingredients": [
@@ -1689,6 +1695,7 @@ export const recipes = [
     },
     {
         "id": 49,
+        "picture": "images/smoothie-tropical.jpg",
         "name": "Smoothie tropical",
         "servings": 4,
         "ingredients": [
@@ -1722,6 +1729,7 @@ export const recipes = [
     },
     {
         "id": 50,
+        "picture": "images/frangipane.jpg",
         "name": "Frangipane",
         "servings": 2,
         "ingredients": [

@@ -18,9 +18,8 @@ export let newIngredientsArray = recipes.map(({ id, ingredients }) => ingredient
 
 newIngredientsArray = newIngredientsArray.map(ingredient => {
     let word = ingredient.ingredient
-    return { id: ingredient.id, ingredient: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() }
+    return { id: ingredient.id, ingredient: (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) }
 })
-
 
 // Remove duplicates
 

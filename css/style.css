@@ -113,10 +113,10 @@ body .tags-section .color--secondary {
 body .tags-section .color--tertiary {
   background-color: #ED6454;
 }
-body .tags-section .clicked-item {
+body .tags-section .clicked-item-tag {
   font-size: 0.8em;
 }
-body .tags-section .clicked-item .fa-circle-xmark {
+body .tags-section .clicked-item-tag .fa-circle-xmark {
   font-size: 1.4em;
 }
 body .tags-section .search-filters {

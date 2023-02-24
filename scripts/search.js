@@ -10,6 +10,9 @@ import { newAppliancesArray } from "./tags-display.js"
 import { newUstensilsArray } from "./tags-display.js"
 import { recipesContainer } from "./recipe-card.js"
 import { displayRecipes } from "./recipe-card.js"
+import { addClickIngredientEvent } from "./search-tags.js"
+import { addClickApplianceEvent } from "./search-tags.js"
+import { addClickUstensilEvent } from "./search-tags.js"
 
 
 /////////////////////////// Create flat array containing all searchable keywords///////////////////////////
@@ -21,7 +24,6 @@ let newRecipeArray = recipes.map(recipe => {
     recipe.ingredients.forEach(ingredient => words.push(ingredient.ingredient.toLowerCase()))
     return { id: recipe.id, words: words }
 })
-
 
 ///////////////////////// Create search funtion on input///////////////////////////////////////////////////
 
@@ -38,16 +40,15 @@ function searchRecipes() {
         //Create array to store recipes ids as results of user's search
         let searchResultsStore = []
         let inputValue = inputSearchBar.value.toLowerCase()
-
         newRecipeArray.forEach(recipe => {
             const wordsTostring = recipe.words.toString()
-            if (wordsTostring.includes(inputValue) ||
-                wordsTostring.split(" ").includes(inputValue)) {
+            if (wordsTostring.includes(inputValue)) {
                 searchResultsStore.push({ id: recipe.id })
                 updateRecipes(searchResultsStore)
                 updateTags(searchResultsStore)
             }
         })
+        console.log(searchResultsStore)
         if (searchResultsStore.length === 0) {
             recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
         }
@@ -79,12 +80,15 @@ function updateTags(searchResultsStore) {
     let updatedIngredientsArray = newIngredientsArray.filter(ingredient => searchResultsStore.some(id => ingredient.ids.includes(id.id)))
     ingredientsContainer.innerHTML = ""
     displayIngredientsTags(updatedIngredientsArray)
+    addClickIngredientEvent()
     let updatedAppliancesArray = newAppliancesArray.filter(appliance => searchResultsStore.some(id => appliance.ids.includes(id.id)))
     appliancesContainer.innerHTML = ""
     displayAppliancesTags(updatedAppliancesArray)
+    addClickApplianceEvent()
     let updatedUstensilsArray = newUstensilsArray.filter(ustensil => searchResultsStore.some(id => ustensil.ids.includes(id.id)))
     ustensilsContainer.innerHTML = ""
     displayUstensilsTags(updatedUstensilsArray)
+    addClickUstensilEvent()
 }
 
 
