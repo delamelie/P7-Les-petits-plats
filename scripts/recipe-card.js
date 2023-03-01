@@ -26,7 +26,7 @@ export function createRecipeCard(recipe) {
     spanIcon.setAttribute("class", "fa-regular fa-clock")
     spanDuration.setAttribute("class", "time-number ms-2")
     cardBody.setAttribute("class", "card-recipe-body d-flex w-100 mt-2")
-    divIngredients.setAttribute("class", "card-recipe-body-ingredients w-50")
+    divIngredients.setAttribute("class", "card-recipe-body-ingredients w-50 pe-2")
     divDescription.setAttribute("class", "card-recipe-body-description w-50")
 
     divTitle.textContent = recipe.name
@@ -72,55 +72,3 @@ export function displayRecipes(recipes) {
     })
 }
 displayRecipes(recipes)
-
-
-
-
-/*
-// Create all recipes' cards
-function createRecipeCards(recipes) {
-    let recipeCard = '';
-
-    recipes.forEach(recipe => {
-        let ingredients = recipe.ingredients;
-        let ingredientDiv = '';
-
-        ingredients.forEach(ingredient => {
-            ingredientDiv += `
-            <div class="card-recipe-body-ingredients-item">
-                <span class="item-ingredient">${ingredient.ingredient}</span>
-                <span class="item-quantity fw-normal">${ingredient.quantity}</span>
-                <span class="item-unit fw-normal">${ingredient.unit}</span>
-            </div>
-            `;
-        });
-
-        // Create recipes' cards
-
-        recipeCard += `
-<div class="card border-0">
-    <img src="images/limonade-coco.jpg" class="rounded-top h-50" alt="...">
-    <div class="card-recipe h-50 p-3 rounded-bottom">
-        <div class="card-recipe-header d-flex mb-3">
-            <h1 class="card-recipe-header-title w-75 m-0 fw-bold">${recipe.name}</h1>
-            <div class="card-text recipe-time">
-                <span class="fa-regular fa-clock"></span>
-                <span class="time-number ms-2">${recipe.time} min</span>
-            </div>
-        </div>
-
-        <div class="card-recipe-body d-flex w-100 mt-2">
-            <div class="card-recipe-body-ingredients w-50">${ingredientDiv}</div>
-            <div class="card-recipe-body-description w-50">${recipe.description}</div>
-        </div>
-   </div>
-</div>
-        `;
-    });
-    recipesContainer.innerHTML = recipeCard;
-}
-
-createRecipeCards(recipes) */
-
-
-

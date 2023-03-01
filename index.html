@@ -32,23 +32,12 @@
 
         <main class="search">
             <form method="post" action="" class="search-bar-recipe position-relative mb-5">
+                <label for="search-bar-input" class="hidden"> Entrez un ou des mots-clés dans la barre de
+                    recherche des recettes</label>
                 <input type="text" class="search-bar-input w-100 fw-bold rounded border-0"
                     placeholder="Rechercher une recette">
                 <i class="fa-solid fa-magnifying-glass position-absolute"></i>
             </form>
-
-
-            <!-----
-            
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Accordion Item #1
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        
-  </div>-->
 
 
             <section class="tags-section">
@@ -57,9 +46,10 @@
 
                 <div class="search-filters d-flex mb-3 mt-4 accordion" id="searchfilters">
 
-                    <div class="search-filters-dropdown accordion-item me-3">
+
+                    <div class="search-filters-dropdown accordion-item me-3 border-0">
                         <button
-                            class="search-filters-button color--primary me-2 px-3 fw-bold rounded border-0 accordion-button"
+                            class="search-filters-button hide-btn color--primary me-2 px-3 fw-bold rounded border-0 accordion-button"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
                             aria-controls="#collapseOne">
                             Ingrédients</button>
@@ -67,9 +57,14 @@
                         <div class="search-filters-tags color--primary rounded collapse accordion-collapse"
                             data-bs-parent="#searchfilters" id="collapseOne">
                             <form method="post" action="" class="search-bar-tags">
+                                <label for="input-ingredients" class="hidden"> Entrez un ou des ingrédients dans la
+                                    barre de
+                                    recherche des ingrédients</label>
                                 <input type="text"
                                     class="input-ingredients fw-bold color--primary input__color--primary rounded border-0"
                                     placeholder="Rechercher un ingrédient">
+                                <!----<button
+                                    class="search-filters-close-button fa-regular fa-chevron-up color--primary border-0"></button>--->
 
                             </form>
                             <div
@@ -78,9 +73,9 @@
                         </div>
                     </div>
 
-                    <div class="search-filters-dropdown accordion-item me-3">
+                    <div class="search-filters-dropdown accordion-item me-3 border-0">
                         <button
-                            class="search-filters-button color--secondary me-2 px-3 fw-bold rounded border-0 accordion-button"
+                            class="search-filters-button hide-btn color--secondary me-2 px-3 fw-bold rounded border-0 accordion-button"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                             aria-controls="#collapseTwo" aria-expanded="false">
                             Appareils
@@ -89,6 +84,9 @@
                         <div class="search-filters-tags color--secondary rounded collapse accordion-collapse"
                             data-bs-parent="#searchfilters" id="collapseTwo">
                             <form method="post" action="" class="search-bar-tags">
+                                <label for="input-appliances" class="hidden"> Entrez un ou des appareils dans la barre
+                                    de
+                                    recherche des appareils</label>
                                 <input type="text"
                                     class="input-appliances fw-bold color--secondary input__color--secondary rounded border-0"
                                     placeholder="Rechercher un appareil">
@@ -100,9 +98,9 @@
                         </div>
                     </div>
 
-                    <div class="search-filters-dropdown accordion-item">
+                    <div class="search-filters-dropdown accordion-item border-0">
                         <button
-                            class="search-filters-button color--tertiary me-2 px-3 fw-bold rounded border-0 accordion-button"
+                            class="search-filters-button hide-btn color--tertiary me-2 px-3 fw-bold rounded border-0 accordion-button"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
                             aria-controls="#collapseThree" aria-expanded="false">
                             Ustensiles
@@ -111,6 +109,8 @@
                         <div class="search-filters-tags color--tertiary rounded collapse accordion-collapse"
                             data-bs-parent="#searchfilters" id="collapseThree">
                             <form method="post" action="" class="search-bar-tags">
+                                <label for="input-ustensils" class="hidden"> Entrez un ou des ustensiles dans la barre
+                                    de recherche des ustensiles</label>
                                 <input type="text"
                                     class="input-ustensils fw-bold color--tertiary input__color--tertiary rounded border-0"
                                     placeholder="Rechercher un ustensile">

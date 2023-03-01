@@ -2,17 +2,12 @@ import { recipes } from "/data/recipes.js"
 import { ingredientsContainer } from "./tags-display.js"
 import { appliancesContainer } from "./tags-display.js"
 import { ustensilsContainer } from "./tags-display.js"
-import { displayIngredientsTags } from "./tags-display.js"
-import { displayAppliancesTags } from "./tags-display.js"
-import { displayUstensilsTags } from "./tags-display.js"
+import { recipesContainer } from "./recipe-card.js"
 import { newIngredientsArray } from "./tags-display.js"
 import { newAppliancesArray } from "./tags-display.js"
 import { newUstensilsArray } from "./tags-display.js"
-import { recipesContainer } from "./recipe-card.js"
 import { displayRecipes } from "./recipe-card.js"
-import { addClickIngredientEvent } from "./search-tags.js"
-import { addClickApplianceEvent } from "./search-tags.js"
-import { addClickUstensilEvent } from "./search-tags.js"
+import { displayTags } from "./tags-display.js"
 
 
 /////////////////////////// Create flat array containing all searchable keywords///////////////////////////
@@ -79,16 +74,13 @@ export function updateRecipes(searchResultsStore) {
 function updateTags(searchResultsStore) {
     let updatedIngredientsArray = newIngredientsArray.filter(ingredient => searchResultsStore.some(id => ingredient.ids.includes(id.id)))
     ingredientsContainer.innerHTML = ""
-    displayIngredientsTags(updatedIngredientsArray)
-    addClickIngredientEvent()
+    displayTags(updatedIngredientsArray)
     let updatedAppliancesArray = newAppliancesArray.filter(appliance => searchResultsStore.some(id => appliance.ids.includes(id.id)))
     appliancesContainer.innerHTML = ""
-    displayAppliancesTags(updatedAppliancesArray)
-    addClickApplianceEvent()
+    displayTags(updatedAppliancesArray)
     let updatedUstensilsArray = newUstensilsArray.filter(ustensil => searchResultsStore.some(id => ustensil.ids.includes(id.id)))
     ustensilsContainer.innerHTML = ""
-    displayUstensilsTags(updatedUstensilsArray)
-    addClickUstensilEvent()
+    displayTags(updatedUstensilsArray)
 }
 
 

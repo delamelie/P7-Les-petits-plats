@@ -1,15 +1,18 @@
 import { recipes } from "/data/recipes.js"
+import { addClickEvent } from "./search-tags.js"
+import { inputIngredients } from "./search-tags.js"
+import { inputUstensils } from "./search-tags.js"
+import { inputAppliances } from "./search-tags.js"
 
 /////////////////////////////DOM elements/////////////////////////
 
 export const ingredientsContainer = document.querySelector(".search-filters-ingredients")
 export const appliancesContainer = document.querySelector(".search-filters-appliances")
 export const ustensilsContainer = document.querySelector(".search-filters-ustensils")
-const closeFiltersBtn = document.querySelectorAll(".fa-chevron-up")
+//const closeFiltersBtn = document.querySelectorAll(".search-filters-close-button")
 
 
-/////////////////////////////////////////////////Ingredients/////////////////////
-
+/////////////////////////////Ingredients/////////////////////
 
 // Retrieve ingredients and capitalize names
 
@@ -21,6 +24,7 @@ newIngredientsArray = newIngredientsArray.map(ingredient => {
     return { id: ingredient.id, ingredient: (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) }
 })
 
+
 // Remove duplicates
 
 newIngredientsArray = newIngredientsArray.reduce((accumulator, { id, ingredient }) => {
@@ -30,19 +34,6 @@ newIngredientsArray = newIngredientsArray.reduce((accumulator, { id, ingredient 
 }, {})
 
 newIngredientsArray = Object.values(newIngredientsArray)
-
-
-// Display ingredients
-
-export function displayIngredientsTags(ingredients) {
-    ingredients.forEach(ingredient => {
-        let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
-        ingredientsContainer.innerHTML += ingredientsListItem
-    })
-}
-
-displayIngredientsTags(newIngredientsArray)
-
 
 
 //////////////////////////////////////////////// Appliances////////////////////////////////////////////////
@@ -57,18 +48,6 @@ export let newAppliancesArray = recipes.reduce((accumulator, { id, appliance }) 
 }, {})
 
 newAppliancesArray = Object.values(newAppliancesArray)
-
-
-// Display appliances
-
-export function displayAppliancesTags(appliances) {
-    appliances.forEach(appliance => {
-        let appliancesListItem = `<div class="item-filtered item-filtered-appliance col-4 text-start gx-0" role="button">${appliance.appliance}</div>`
-        appliancesContainer.innerHTML += appliancesListItem
-    })
-}
-displayAppliancesTags(newAppliancesArray)
-
 
 
 /////////////////////Ustensils//////////////////
@@ -95,22 +74,33 @@ newUstensilsArray = newUstensilsArray.reduce((accumulator, { id, ustensil }) => 
 newUstensilsArray = Object.values(newUstensilsArray)
 
 
-// Display ustensils
+/////////////////////// Display tags //////////////////////
 
-export function displayUstensilsTags(ustensils) {
-    ustensils.forEach(ustensil => {
-        let ustensilsListItem = `<div class="item-filtered item-filtered-ustensil col-4 text-start gx-0" role="button">${ustensil.ustensil}</div>`
-        ustensilsContainer.innerHTML += ustensilsListItem
+export function displayTags(items, container, type, input) {
+    items.forEach(item => {
+        let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item[type]}</div>`
+        container.innerHTML += listItem
+        addClickEvent(`.item-filtered-${type}`, type, input)
     })
 }
-displayUstensilsTags(newUstensilsArray)
 
-
-
+displayTags(newIngredientsArray, ingredientsContainer, "ingredient", inputIngredients)
+displayTags(newAppliancesArray, appliancesContainer, "appliance", inputAppliances)
+displayTags(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 
 
 
 // Open and close ingredients
+
+/*const buttons = document.querySelectorAll('.search-filters-button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.toggle('d-none')
+    });
+});*/
+
+
 
 
 /*function openFilters() {
@@ -141,6 +131,10 @@ openFilters()*/
         }))
 }
 closeFilters()*/
+
+
+
+
 
 
 

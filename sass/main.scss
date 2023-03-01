@@ -28,88 +28,6 @@ body {
         }
     }
 
-    /*.search-filters {
-
-        &-button {
-            /*height: 70px;
-            font-size: 1.1em;
-            color: #ffffff;
-            position: relative;
-        }
-
-        .color--primary {
-            background-color: $color-primary;
-        }
-
-        .color--secondary {
-            background-color: $color-secondary;
-        }
-
-        .color--tertiary {
-            background-color: $color-tertiary
-        }
-
-
-        /*&-tags {
-            /*display: none;
-            z-index: 100;
-        }
-
-        &-dropdown {
-            color: #ffffff;
-            position: relative;
-            left: 600;
-            border: 3px solid;
-
-        }
-
-        &-tags {
-            /*display: none;
-            background-color: #3282F7;
-            position: absolute;
-            top: 0;
-            width: 600px;
-            z-index: 100;
-        }
-
-        form {
-
-            input {
-                width: 90%;
-                height: 70px;
-                text-indent: 20px;
-                /*font-size: 1em;
-                color: #ffffff;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            .input__color--primary::placeholder {
-                color: lighten($color-primary, 20%);
-            }
-
-            .input__color--secondary::placeholder {
-                color: lighten($color-secondary, 20%);
-            }
-
-            .input__color--tertiary::placeholder {
-                color: lighten($color-tertiary, 20%);
-            }
-
-            .fa-chevron-up {
-                color: #ffffff;
-            }
-
-        }
-
-        /*&-category {
-            max-height: 400px;
-            overflow-y: scroll;
-        }
-    }*/
-
     .tags-section {
         color: #ffffff;
 
@@ -153,10 +71,6 @@ body {
                 background-color: $color-tertiary
             }
 
-            .accordion-button:not(.collapsed) {
-                color: #ffffff;
-            }
-
             .accordion-button:not(.collapsed)::after {
                 background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
                 transform: rotate(-180deg);
@@ -167,25 +81,13 @@ body {
             }
 
 
-
             &-dropdown {
                 color: #ffffff;
-                border: none;
-                position: relative;
-                /*left: 600;*/
-                /*max-width: 600px;
-            width: fit-content;
-            block-size: fit-content;*/
-
             }
 
 
             &-tags {
-                /*display: none;*/
-                background-color: #3282F7;
-                /*position: absolute;
-            top: 0;
-            z-index: 100;*/
+                width: 600px;
             }
 
             form {
@@ -194,7 +96,6 @@ body {
                     width: 90%;
                     height: 70px;
                     text-indent: 20px;
-                    /*font-size: 1em;*/
                     color: #ffffff;
 
                     &:focus {
@@ -216,14 +117,10 @@ body {
 
                 .fa-chevron-up {
                     color: #ffffff;
+                    font-size: 1.2em;
                 }
 
             }
-
-            /*&-category {
-            max-height: 400px;
-            overflow-y: scroll;
-        }*/
         }
     }
 
@@ -254,9 +151,11 @@ body {
 
                 &-body {
 
+                    &-ingredients,
                     &-description {
-                        overflow: hidden;
+                        overflow: hidden !important;
                         text-overflow: ellipsis;
+                        height: 95px;
                         /*white-space: nowrap;*/
                         display: -webkit-box;
                         -webkit-line-clamp: 6;
@@ -269,3 +168,11 @@ body {
         }
     }
 }
+
+.hidden {
+    display: none;
+}
+
+/*.hide-btn[aria-expanded="true"] {
+    display: none;
+}*/

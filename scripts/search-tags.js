@@ -1,12 +1,6 @@
-import { newIngredientsArray } from "./tags-display.js"
 import { ingredientsContainer } from "./tags-display.js"
-import { displayIngredientsTags } from "./tags-display.js"
-import { newAppliancesArray } from "./tags-display.js"
 import { appliancesContainer } from "./tags-display.js"
-import { displayAppliancesTags } from "./tags-display.js"
-import { newUstensilsArray } from "./tags-display.js"
 import { ustensilsContainer } from "./tags-display.js"
-import { displayUstensilsTags } from "./tags-display.js"
 import { recipes } from "../data/recipes.js"
 import { displayRecipes } from "./recipe-card.js"
 import { recipesContainer } from "./recipe-card.js"
@@ -14,9 +8,10 @@ import { recipesContainer } from "./recipe-card.js"
 
 /////////////////////// DOM elements and event listeners //////////////////////////////////
 
-const inputIngredients = document.querySelector(".input-ingredients")
-const inputAppliances = document.querySelector(".input-appliances")
-const inputUstensils = document.querySelector(".input-ustensils")
+export const inputIngredients = document.querySelector(".input-ingredients")
+export const inputAppliances = document.querySelector(".input-appliances")
+export const inputUstensils = document.querySelector(".input-ustensils")
+
 let tagsContainer = document.querySelector(".tags-container")
 
 inputIngredients.addEventListener("input", searchIngredients)
@@ -24,103 +19,55 @@ inputAppliances.addEventListener("input", searchAppliances)
 inputUstensils.addEventListener("input", searchUstensils)
 
 
-///////////////////////////// Search by input //////////////////////
+///////////////////////////////////// Search by input //////////////////////////////////////
 
+function searchItems(selector, input) {
+    const items = document.querySelectorAll(selector)
+    const inputValue = input.value.toLowerCase()
+    const itemsArray = Array.prototype.slice.call(items)
+    const filteredItems = itemsArray.filter(item => item.innerText.toLowerCase().includes(inputValue))
+    items.forEach(item => item.style.display = "none")
+    filteredItems.forEach(item => item.style.display = "block")
+}
 
 
 function searchIngredients() {
-    let ingredientTags = document.querySelectorAll(".item-filtered-ingredient")
-    let inputIngredientsValue = inputIngredients.value.toLowerCase()
-    const ingredientTagsArray = Array.prototype.slice.call(ingredientTags)
-    const ingredientTagsFiltered = ingredientTagsArray.filter(item => item.innerText.toLowerCase().includes(inputIngredientsValue))
-    console.log(ingredientTagsFiltered)
-    ingredientTags.forEach(item => item.style.display = "none")
-    ingredientTagsFiltered.forEach(item => console.log(item))
-    ingredientTagsFiltered.forEach(item => item.style.display = "block")
+    searchItems(".item-filtered-ingredient", inputIngredients)
 }
 
 function searchAppliances() {
-    let applianceTags = document.querySelectorAll(".item-filtered-appliance")
-    let inputAppliancesValue = inputAppliances.value.toLowerCase()
-    const applianceTagsArray = Array.prototype.slice.call(applianceTags)
-    const applianceTagsFiltered = applianceTagsArray.filter(item => item.innerText.toLowerCase().includes(inputAppliancesValue))
-    applianceTags.forEach(item => item.style.display = "none")
-    applianceTagsFiltered.forEach(item => item.style.display = "block")
+    searchItems(".item-filtered-appliance", inputAppliances)
 }
 
 function searchUstensils() {
-    let ustensilTags = document.querySelectorAll(".item-filtered-ustensil")
-    let inputUstensilsValue = inputUstensils.value.toLowerCase()
-    const ustensilTagsArray = Array.prototype.slice.call(ustensilTags)
-    const ustensilTagsFiltered = ustensilTagsArray.filter(item => item.innerText.toLowerCase().includes(inputUstensilsValue))
-    ustensilTags.forEach(item => item.style.display = "none")
-    ustensilTagsFiltered.forEach(item => item.style.display = "block")
+    searchItems(".item-filtered-ustensil", inputUstensils)
 }
 
-// function searchUstensils() {
-//     let inputUstensilsValue = inputUstensils.value.toLowerCase()
-//     const ustensilsFilteredByTag = newUstensilsArray.filter(item => item.ustensil.toLowerCase().includes(inputUstensilsValue))
-//     if (inputUstensilsValue.length >= 1) {
-//         ustensilsContainer.innerHTML = ""
-//         displayUstensilsTags(ustensilsFilteredByTag)
-//         addClickUstensilEvent()
-//     } else {
-//         ustensilsContainer.innerHTML = ""
-//         displayUstensilsTags(newUstensilsArray)
-//         addClickUstensilEvent()
-//     }
-// }
 
+//////////////////////////////// Search by clicking tags ///////////////////////////////
 
-//////////////////////////////// Search by clicking tags //////////////////
-
-///// Add event listener ////////
+/////// Add event listener to tags ////////
 
 let clickedItem
 
-export function addClickIngredientEvent() {
-    let selectedIngredient = document.querySelectorAll(".item-filtered-ingredient")
-    selectedIngredient.forEach(ingredient => {
-        ingredient.addEventListener('click', function clickTag(event) {
+export function addClickEvent(selector, itemType, input) {
+    let selectedItem = document.querySelectorAll(selector)
+    selectedItem.forEach((item) => {
+        item.addEventListener("click", function clickTag(event) {
             clickedItem = event.target.innerText
-            createSelectedTag("ingredient", clickedItem)
+            createSelectedTag(itemType, clickedItem)
             updateOnclick()
-            inputIngredients.value = ""
+            input.value = ""
         })
     })
 }
-addClickIngredientEvent()
+
+addClickEvent(".item-filtered-ingredient", "ingredient", inputIngredients)
+addClickEvent(".item-filtered-appliance", "appliance", inputAppliances)
+addClickEvent(".item-filtered-ustensil", "ustensil", inputUstensils)
 
 
-export function addClickApplianceEvent() {
-    let selectedAppliance = document.querySelectorAll(".item-filtered-appliance")
-    selectedAppliance.forEach(appliance => {
-        appliance.addEventListener('click', function clickTag(event) {
-            clickedItem = event.target.innerText
-            createSelectedTag("appliance", clickedItem)
-            updateOnclick()
-            inputAppliances.value = ""
-        })
-    })
-}
-addClickApplianceEvent()
-
-
-export function addClickUstensilEvent() {
-    let selectedUstensil = document.querySelectorAll(".item-filtered-ustensil");
-    selectedUstensil.forEach((ustensil) => {
-        ustensil.addEventListener("click", function clickTag(event) {
-            clickedItem = event.target.innerText
-            createSelectedTag("ustensil", clickedItem)
-            updateOnclick()
-            inputUstensils.value = ""
-        });
-    });
-}
-addClickUstensilEvent()
-
-
-/////////// Display selected tags above dropdowns ///////////
+//// Display selected tags above dropdowns ////
 
 function createSelectedTag(itemType, clickedItem) {
     let classItem
@@ -144,14 +91,17 @@ function createSelectedTag(itemType, clickedItem) {
 }
 
 
-/////////// Update recipes and tags containers altogether //////////
+//// Update recipes and tags containers altogether ////
 
 let filteredRecipes = recipes
 
+
 function updateOnclick() {
+    filteredRecipes = recipes
     let clickedItemTag = document.querySelectorAll(".clicked-item-tag")
     clickedItemTag.forEach((item => {
         let clickedItem = item.innerText.trim()
+        console.log(clickedItem)
         let itemType = item.getAttribute("item-type")
         switch (itemType) {
             case "ingredient":
@@ -169,6 +119,7 @@ function updateOnclick() {
         displayRecipes(filteredRecipes)
         ingredientsContainer.innerHTML = ""
         updateIngredientsDropdown(filteredRecipes)
+        //updateDropdown(filteredRecipes, ingredientsContainer, ".item-filtered-ingredient", "ingredient", inputIngredients)
         appliancesContainer.innerHTML = ""
         updateAppliancesDropdown(filteredRecipes)
         ustensilsContainer.innerHTML = ""
@@ -178,27 +129,93 @@ function updateOnclick() {
 }
 
 
+//// Remove clicked item from dropdown /////
 
-///// Functions to update each container //////
-
-function updateIngredientsDropdown(recipes) {
-    let clickedItemTag = document.querySelectorAll(".clicked-item-tag")
-    recipes.forEach(recipe => {
-        recipe.ingredients.forEach(ingredient => {
-
-
-            //let test = ingredient.ingredient
-            let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
-            ingredientsContainer.innerHTML += ingredientsListItem
-            /*if (test === clickedItem) {
-                test.style.display = "none"
-            }*/
-
-
+function removeClickedItems(itemsList) {
+    let clickedItemTags = document.querySelectorAll(".clicked-item-tag")
+    clickedItemTags.forEach(clickedItemTag => {
+        let clickedItem = clickedItemTag.innerText.trim()
+        itemsList.forEach(item => {
+            if (item.innerText.toLowerCase() === clickedItem.toLowerCase()) {
+                item.remove()
+            }
         })
     })
-    addClickIngredientEvent()
 }
+
+
+///// Update each container //////
+
+
+
+
+// let test = []
+// let result = []
+
+
+// function updateIngredientsDropdown(recipes, resultArray) {
+//     recipes.forEach(recipe => {
+//         recipe.ingredients.forEach(ingredient => {
+
+//             test.push(ingredient.ingredient)
+//             result = test.filter((item, index) => test.indexOf(item) === index)
+//             //console.log(result)
+
+//             //removeDuplicates(ingredient)
+//             let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
+//             ingredientsContainer.innerHTML += ingredientsListItem
+//         })
+//     })
+//     let ingredientsList = document.querySelectorAll(".item-filtered-ingredient")
+//     removeClickedItems(ingredientsList)
+//     addClickEvent(".item-filtered-ingredient", "ingredient", inputIngredients)
+
+//     return resultArray
+// }
+
+// let ingredientsFilteredArray = updateIngredientsDropdown(recipes, result)
+// console.log(ingredientsFilteredArray)
+
+// console.log(result)
+
+
+
+
+
+
+
+// let test = []
+
+// function removeDuplicates() {
+//     console.log('yo')
+//     recipes.forEach((recipe) => {
+//         recipe.ingredients.forEach((ingredient) => {
+//             test.push(ingredient.ingredient)
+//         })
+//     })
+//     return test.filter((item, index) => test.indexOf(item) === index)
+// }
+
+// let ingredientsFilteredArray = removeDuplicates(test)
+// console.log(ingredientsFilteredArray)
+
+
+
+
+
+function updateIngredientsDropdown(recipes) {
+    recipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            //console.log(ingredient.ingredient)
+            let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
+            ingredientsContainer.innerHTML += ingredientsListItem
+        })
+    })
+    let ingredientsList = document.querySelectorAll(".item-filtered-ingredient")
+    removeClickedItems(ingredientsList)
+    addClickEvent(".item-filtered-ingredient", "ingredient", inputIngredients)
+}
+
 
 function updateUstensilsDropdown(recipes) {
     recipes.forEach(recipe => {
@@ -207,7 +224,9 @@ function updateUstensilsDropdown(recipes) {
             ustensilsContainer.innerHTML += ustensilsListItem
         })
     })
-    addClickUstensilEvent()
+    let ustensilsList = document.querySelectorAll(".item-filtered-ustensil")
+    removeClickedItems(ustensilsList)
+    addClickEvent(".item-filtered-ustensil", "ustensil", inputUstensils)
 }
 
 
@@ -217,44 +236,35 @@ function updateAppliancesDropdown(recipes) {
         appliancesContainer.innerHTML += appliancesListItem
 
     })
-    addClickApplianceEvent()
+    let appliancesList = document.querySelectorAll(".item-filtered-appliance")
+    removeClickedItems(appliancesList)
+    addClickEvent(".item-filtered-appliance", "appliance", inputAppliances)
 }
 
-/*function updateDropdown() {
-    let clickedItemTag = document.querySelectorAll(".clicked-item-tag")
-    clickedItemTag.forEach(item => {
-        let itemType = item.getAttribute("item-type")
-        switch (itemType) {
-            case "ingredient":
-                recipes.forEach(recipe => {
-                    recipe.ingredients.forEach(ingredient => {
-                        let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
-                        ingredientsContainer.innerHTML += ingredientsListItem
-                    })
-                })
-                break
-            case "appliance":
-                let appliancesListItem = `<div class="item-filtered item-filtered-appliance col-4 text-start gx-0" role="button">${recipes.appliance}</div>`
-                appliancesContainer.innerHTML += appliancesListItem
-                break
-            case "ustensil":
-                let ustensilsListItem = `<div class="item-filtered item-filtered-ustensil col-4 text-start gx-0" role="button">${recipes.ustensil}</div>`
-                ustensilsContainer.innerHTML += ustensilsListItem
-                break
-        }
-    })
-}*/
+
+// function updateDropdown(recipes, container, selector, type, input) {
+//     recipes.forEach(recipe => {
+//         recipe.items.forEach(item => {
+//             let listItem = `<div class="item-filtered item-filtered-{$type} col-4 text-start gx-0" role="button">${item[type]}</div>`
+//             container.innerHTML += listItem
+//         })
+//     })
+//     let itemsList = document.querySelectorAll(selector)
+//     removeClickedItems(itemsList)
+//     addClickEvent(selector, type, input)
+// }
 
 
 
-/////////////// Remove tags /////////////////////
+/////////////// Remove selected tags when they are clicked /////////////////////
 
 function addEventToRemoveTags() {
     let removeTagButtons = document.querySelectorAll(".fa-circle-xmark")
     removeTagButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             let tag = event.target.parentElement
-            tag.style.display = "none"
+            tag.remove()
+            updateOnclick()
         })
     })
 }
@@ -262,35 +272,25 @@ function addEventToRemoveTags() {
 
 
 
-/*function removeTags() {
-    let clickedItemTag = document.querySelectorAll(".clicked-item-tag")
-    clickedItemTag.forEach((item => {
-        let clickedItem = item.innerText.trim()
-        console.log(clickedItem)
-        let itemType = item.getAttribute("item-type")
-        switch (itemType) {
-            case "ingredient":
-                filteredRecipes = filteredRecipes.filter(recipe => recipe.ingredients.some(ing => ing.ingredient.toLowerCase() === clickedItem.toLowerCase()))
-                updatedIngredientsArray = newIngredientsArray.filter(ingredient => filteredRecipes.some(id => ingredient.ids.includes(id.id)))
-                console.log(updatedIngredientsArray)
-                break
-            case "appliance":
-                filteredRecipes = filteredRecipes.filter(recipe => (recipe.appliance.toLowerCase() === clickedItem.toLowerCase()))
-                updatedAppliancesArray = newAppliancesArray.filter(appliance => filteredRecipes.some(id => appliance.ids.includes(id.id)))
-                console.log(updatedAppliancesArray)
-                break
-            case "ustensil":
-                filteredRecipes = filteredRecipes.filter(recipe => recipe.ustensils.some(ustensil => ustensil.toLowerCase() === clickedItem.toLowerCase()))
-                updatedUstensilsArray = newUstensilsArray.filter(ustensil => filteredRecipes.some(id => ustensil.ids.includes(id.id)))
-                console.log(updatedUstensilsArray)
-                break
-        }
-        console.log(filteredRecipes)
-        recipesContainer.textContent = ""
-        displayRecipes(filteredRecipes)
-    }
-    ))
-}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
