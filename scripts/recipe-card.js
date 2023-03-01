@@ -2,7 +2,7 @@ import { recipes } from "/data/recipes.js"
 
 export const recipesContainer = document.querySelector(".recipes-container")
 
-export function createRecipeCard(recipe) {
+function createRecipeCard(recipe) {
     const divCard = document.createElement("div")
     const image = document.createElement("img")
     const divRecipe = document.createElement("div")

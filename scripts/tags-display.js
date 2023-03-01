@@ -4,7 +4,8 @@ import { inputIngredients } from "./search-tags.js"
 import { inputUstensils } from "./search-tags.js"
 import { inputAppliances } from "./search-tags.js"
 
-/////////////////////////////DOM elements/////////////////////////
+
+//////////////////////////////////// DOM elements /////////////////////////////////////
 
 export const ingredientsContainer = document.querySelector(".search-filters-ingredients")
 export const appliancesContainer = document.querySelector(".search-filters-appliances")
@@ -12,7 +13,7 @@ export const ustensilsContainer = document.querySelector(".search-filters-ustens
 //const closeFiltersBtn = document.querySelectorAll(".search-filters-close-button")
 
 
-/////////////////////////////Ingredients/////////////////////
+///////////////////////////// Create ingredients' array //////////////////////////////
 
 // Retrieve ingredients and capitalize names
 
@@ -23,7 +24,6 @@ newIngredientsArray = newIngredientsArray.map(ingredient => {
     let word = ingredient.ingredient
     return { id: ingredient.id, ingredient: (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) }
 })
-
 
 // Remove duplicates
 
@@ -36,8 +36,7 @@ newIngredientsArray = newIngredientsArray.reduce((accumulator, { id, ingredient 
 newIngredientsArray = Object.values(newIngredientsArray)
 
 
-//////////////////////////////////////////////// Appliances////////////////////////////////////////////////
-
+//////////////////////////// Create appliances' array ///////////////////////////////
 
 // Retrieve appliances and remove duplicates
 
@@ -50,8 +49,7 @@ export let newAppliancesArray = recipes.reduce((accumulator, { id, appliance }) 
 newAppliancesArray = Object.values(newAppliancesArray)
 
 
-/////////////////////Ustensils//////////////////
-
+////////////////////////// Create ustensils' array ///////////////////////////////
 
 // Retrieve ustensils and capitalize names
 
@@ -61,7 +59,6 @@ newUstensilsArray = newUstensilsArray.map(ustensil => {
     let word = ustensil.ustensil
     return { id: ustensil.id, ustensil: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() }
 })
-
 
 // Remove duplicates
 
@@ -74,7 +71,7 @@ newUstensilsArray = newUstensilsArray.reduce((accumulator, { id, ustensil }) => 
 newUstensilsArray = Object.values(newUstensilsArray)
 
 
-/////////////////////// Display tags //////////////////////
+////////////////////////////// Display tags ////////////////////////////////////
 
 export function displayTags(items, container, type, input) {
     items.forEach(item => {
@@ -131,6 +128,7 @@ openFilters()*/
         }))
 }
 closeFilters()*/
+
 
 
 
