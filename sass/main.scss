@@ -24,12 +24,11 @@ body {
         .fa-magnifying-glass {
             top: 25px;
             right: 20px;
-            font-size: 30px;
+            font-size: 1.6em;
         }
     }
 
     .tags-section {
-        color: #ffffff;
 
         .color--primary {
             background-color: $color-primary;
@@ -55,20 +54,7 @@ body {
 
             &-button {
                 font-size: 1.1em;
-                color: #ffffff;
                 box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
-            }
-
-            .color--primary {
-                background-color: $color-primary;
-            }
-
-            .color--secondary {
-                background-color: $color-secondary;
-            }
-
-            .color--tertiary {
-                background-color: $color-tertiary
             }
 
             .accordion-button:not(.collapsed)::after {
@@ -80,12 +66,6 @@ body {
                 background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
             }
 
-
-            &-dropdown {
-                color: #ffffff;
-            }
-
-
             &-tags {
                 width: 600px;
             }
@@ -96,7 +76,6 @@ body {
                     width: 90%;
                     height: 70px;
                     text-indent: 20px;
-                    color: #ffffff;
 
                     &:focus {
                         outline: none;
@@ -116,15 +95,12 @@ body {
                 }
 
                 .fa-chevron-up {
-                    color: #ffffff;
                     font-size: 1.2em;
                 }
 
             }
         }
     }
-
-
 
     .recipes-container {
 
@@ -140,10 +116,8 @@ body {
                 background-color: #E7E7E7;
 
                 &-header {
-                    &-title {
-                        font-size: 1.6em;
-                    }
 
+                    &-title,
                     &-time {
                         font-size: 1.6em;
                     }

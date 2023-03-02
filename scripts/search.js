@@ -24,25 +24,37 @@ let newRecipeArray = recipes.map(recipe => {
 })
 
 
-//////////////////////////////////// Create search funtion on main input //////////////////////////////////////
+//////////////////////////////////// Create search funtcion on main input //////////////////////////////////////
 
 const inputSearchBar = document.querySelector(".search-bar-input")
 inputSearchBar.addEventListener("input", searchRecipes)
+
+
+// Remove accents from strings
+
+export function removeAccents(string) {
+    return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
 
 
 /*let searchResultsStore = []*/
 
 function searchRecipes() {
     if (inputSearchBar.value.length >= 3) {
-        //Create array to store recipes ids as results of user's search
+        // Create array to store recipes ids as results of user's search
         let searchResultsStore = []
         let inputValue = inputSearchBar.value.toLowerCase()
+
+        // Remove accents from input and searchable words
+        let normalizedInputValue = removeAccents(inputValue)
         newRecipeArray.forEach(recipe => {
             const wordsTostring = recipe.words.toString()
-            if (wordsTostring.includes(inputValue)) {
+            const normalizedWordsTostring = removeAccents(wordsTostring)
+            if (normalizedWordsTostring.includes(normalizedInputValue)) {
                 searchResultsStore.push({ id: recipe.id })
                 updateRecipes(searchResultsStore)
                 updateTags(searchResultsStore)
+                console.log(searchResultsStore)
             }
         })
         if (searchResultsStore.length === 0) {
@@ -90,7 +102,3 @@ export function displayReset() {
     ustensilsContainer.innerHTML = ""
     displayTags(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 }
-
-
-
-

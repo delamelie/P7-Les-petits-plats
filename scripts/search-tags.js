@@ -5,9 +5,10 @@ import { ustensilsContainer } from "./tags-display.js"
 import { displayRecipes } from "./recipe-card.js"
 import { recipesContainer } from "./recipe-card.js"
 import { displayReset } from "./search.js"
+import { removeAccents } from "./search.js"
 
-/*import { newIngredientsArray } from "./tags-display.js"
-import { displayTags } from "./tags-display.js"*/
+import { newUstensilsArray } from "./tags-display.js"
+// import { displayTags } from "./tags-display.js"
 
 
 /////////////////////// DOM elements and event listeners //////////////////////////////////
@@ -28,10 +29,10 @@ inputUstensils.addEventListener("input", searchUstensils)
 function searchItems(selector, input) {
     const items = document.querySelectorAll(selector)
     const inputValue = input.value.toLowerCase()
+    //const normalizedInputValue = removeAccents(inputValue)
+    //console.log(normalizedInputValue)
     const itemsArray = Array.prototype.slice.call(items)
-    console.log(itemsArray)
-    const filteredItems = itemsArray.filter(item => item.innerText.toLowerCase().includes(inputValue))
-    console.log(filteredItems)
+    const filteredItems = itemsArray.filter(item => removeAccents(item.innerText.toLowerCase()).includes(removeAccents(inputValue)))
     items.forEach(item => item.style.display = "none")
     filteredItems.forEach(item => item.style.display = "block")
 }
@@ -52,25 +53,23 @@ function searchUstensils() {
 
 
 
-// function searchIngredients() {
-//     let inputIngredientsValue = inputIngredients.value.trim()
-//     console.log(inputIngredientsValue)
-//     const ingredientsFilteredByTag = newIngredientsArray.filter(i => i.ingredient.toLowerCase() === inputIngredientsValue.toLowerCase() || i.ingredient.toString().split(" ") === inputIngredientsValue.toLowerCase())
-//     console.log(ingredientsFilteredByTag)
-//     if (inputIngredientsValue.length >= 1) {
-//         console.log('yes')
-//         if (ingredientsFilteredByTag.length != 0) {
-//             ingredientsContainer.innerHTML = ""
-//             displayTags(ingredientsFilteredByTag, ingredientsContainer, "ingredient", inputIngredients)
+// function searchUstensils() {
+//     let inputUstensilsValue = inputUstensils.value.trim()
+//     const ustensilsFilteredByTag = newUstensilsArray.filter(i => i.ustensil.toLowerCase().includes(inputUstensilsValue.toLowerCase()))
+//     if (inputUstensilsValue.length >= 1) {
+//         if (ustensilsFilteredByTag.length != 0) {
+//             ustensilsContainer.innerHTML = ""
+//             displayTags(ustensilsFilteredByTag, ustensilsContainer, "ustensil", inputUstensils)
 //         }
-//         if (ingredientsFilteredByTag.length === 0) {
-//             ingredientsContainer.innerHTML = ""
+//         if (ustensilsFilteredByTag.length === 0) {
+//             ustensilsContainer.innerHTML = ""
 //         }
 //     } else {
-//         ingredientsContainer.innerHTML = ""
-//         displayTags(newIngredientsArray, ingredientsContainer, "ingredient", inputIngredients)
+//         ustensilsContainer.innerHTML = ""
+//         displayTags(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 //     }
 // }
+
 
 
 //////////////////////////////// Search by clicking tags ///////////////////////////////
@@ -112,8 +111,8 @@ function createSelectedTag(itemType, clickedItem) {
             break
     }
     let selectedTag =
-        `<span class="clicked-item-tag fw-bold ${classItem} me-2 rounded p-2" item-type="${itemType}">${clickedItem}
-            <span class="fa-regular fa-circle-xmark ms-3" role="button" type="button"></span>
+        `<span class="clicked-item-tag fw-bold ${classItem} me-2 rounded p-2 text-white" item-type="${itemType}">${clickedItem}
+            <span class="fa-regular fa-circle-xmark ms-3 text-white" role="button" type="button"></span>
         </span>`
     tagsContainer.innerHTML += selectedTag
     addEventToRemoveTags()
@@ -152,6 +151,7 @@ function updateOnclick() {
     }
 }
 
+
 function domUpdateOnclick() {
     recipesContainer.textContent = ""
     displayRecipes(filteredRecipes)
@@ -182,62 +182,17 @@ function removeClickedItems(itemsList) {
 }
 
 
-///// Update each container //////
-
-
-// let test = []
-// let result = []
-
-
-// function updateIngredientsDropdown(recipes, resultArray) {
-//     recipes.forEach(recipe => {
-//         recipe.ingredients.forEach(ingredient => {
-
-//             test.push(ingredient.ingredient)
-//             result = test.filter((item, index) => test.indexOf(item) === index)
-//             //console.log(result)
-
-//             //removeDuplicates(ingredient)
-//             let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
-//             ingredientsContainer.innerHTML += ingredientsListItem
-//         })
-//     })
-//     let ingredientsList = document.querySelectorAll(".item-filtered-ingredient")
-//     removeClickedItems(ingredientsList)
-//     addClickEvent(".item-filtered-ingredient", "ingredient", inputIngredients)
-
-//     return resultArray
-// }
-
-// let ingredientsFilteredArray = updateIngredientsDropdown(recipes, result)
-// console.log(ingredientsFilteredArray)
-
-// console.log(result)
-
-
-
-
-// let test = []
-
-// function removeDuplicates() {
-//     console.log('yo')
-//     recipes.forEach((recipe) => {
-//         recipe.ingredients.forEach((ingredient) => {
-//             test.push(ingredient.ingredient)
-//         })
-//     })
-//     return test.filter((item, index) => test.indexOf(item) === index)
-// }
-
-// let ingredientsFilteredArray = removeDuplicates(test)
-// console.log(ingredientsFilteredArray)
-
+///// Update dropdowns //////
 
 
 function updateIngredientsDropdown(recipes) {
+    let test = []
     recipes.forEach(recipe => {
         recipe.ingredients.forEach(ingredient => {
-            //console.log(ingredient.ingredient)
+            test.push(ingredient.ingredient)
+            /*test = test.map(ingredient => ingredient.ingredient.charAt(0).toUpperCase() + ingredient.slice(1).toLowerCase())
+            console.log(test)
+            test = test.filter((ingredient, index) => test.indexOf(ingredient) === index)*/
             let ingredientsListItem = `<div class="item-filtered item-filtered-ingredient col-4 text-start gx-0" role="button">${ingredient.ingredient}</div>`
             ingredientsContainer.innerHTML += ingredientsListItem
         })
@@ -249,23 +204,38 @@ function updateIngredientsDropdown(recipes) {
 
 
 function updateUstensilsDropdown(recipes) {
+    let test = []
     recipes.forEach(recipe => {
         recipe.ustensils.forEach(ustensil => {
-            let ustensilsListItem = `<div class="item-filtered item-filtered-ustensil col-4 text-start gx-0" role="button">${ustensil}</div>`
-            ustensilsContainer.innerHTML += ustensilsListItem
+            test.push(ustensil)
+            test = test.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.slice(1).toLowerCase())
+            test = test.filter((ustensil, index) => test.indexOf(ustensil) === index)
         })
     })
+    test.forEach(item => {
+        let ustensilsListItem = `<div class="item-filtered item-filtered-ustensil col-4 text-start gx-0" role="button">${item}</div>`
+        ustensilsContainer.innerHTML += ustensilsListItem
+    })
+    console.log(test)
     let ustensilsList = document.querySelectorAll(".item-filtered-ustensil")
     removeClickedItems(ustensilsList)
     addClickEvent(".item-filtered-ustensil", "ustensil", inputUstensils)
 }
 
 
-function updateAppliancesDropdown(recipes) {
-    recipes.forEach(recipe => {
-        let appliancesListItem = `<div class="item-filtered item-filtered-appliance col-4 text-start gx-0" role="button">${recipe.appliance}</div>`
-        appliancesContainer.innerHTML += appliancesListItem
 
+
+function updateAppliancesDropdown(recipes) {
+    let test = []
+    recipes.forEach(recipe => {
+        test.push(recipe.appliance)
+        test = test.map(appliance => appliance.charAt(0).toUpperCase() + appliance.slice(1).toLowerCase())
+        test = test.filter((appliance, index) => test.indexOf(appliance) === index)
+        console.log(test)
+    })
+    test.forEach(item => {
+        let appliancesListItem = `<div class="item-filtered item-filtered-appliance col-4 text-start gx-0" role="button">${item}</div>`
+        appliancesContainer.innerHTML += appliancesListItem
     })
     let appliancesList = document.querySelectorAll(".item-filtered-appliance")
     removeClickedItems(appliancesList)

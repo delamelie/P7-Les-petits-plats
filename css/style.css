@@ -18,10 +18,7 @@ body .search-bar-recipe input::placeholder {
 body .search-bar-recipe .fa-magnifying-glass {
   top: 25px;
   right: 20px;
-  font-size: 30px;
-}
-body .tags-section {
-  color: #ffffff;
+  font-size: 1.6em;
 }
 body .tags-section .color--primary {
   background-color: #3282F7;
@@ -40,17 +37,7 @@ body .tags-section .clicked-item-tag .fa-circle-xmark {
 }
 body .tags-section .search-filters-button {
   font-size: 1.1em;
-  color: #ffffff;
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
-}
-body .tags-section .search-filters .color--primary {
-  background-color: #3282F7;
-}
-body .tags-section .search-filters .color--secondary {
-  background-color: #68D9A4;
-}
-body .tags-section .search-filters .color--tertiary {
-  background-color: #ED6454;
 }
 body .tags-section .search-filters .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
@@ -59,9 +46,6 @@ body .tags-section .search-filters .accordion-button:not(.collapsed)::after {
 body .tags-section .search-filters .accordion-button.collapsed::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
-body .tags-section .search-filters-dropdown {
-  color: #ffffff;
-}
 body .tags-section .search-filters-tags {
   width: 600px;
 }
@@ -69,7 +53,6 @@ body .tags-section .search-filters form input {
   width: 90%;
   height: 70px;
   text-indent: 20px;
-  color: #ffffff;
 }
 body .tags-section .search-filters form input:focus {
   outline: none;
@@ -84,7 +67,6 @@ body .tags-section .search-filters form .input__color--tertiary::placeholder {
   color: #f7b8b0;
 }
 body .tags-section .search-filters form .fa-chevron-up {
-  color: #ffffff;
   font-size: 1.2em;
 }
 body .recipes-container .card {
@@ -97,10 +79,7 @@ body .recipes-container .card-recipe {
   font-size: 0.75em;
   background-color: #E7E7E7;
 }
-body .recipes-container .card-recipe-header-title {
-  font-size: 1.6em;
-}
-body .recipes-container .card-recipe-header-time {
+body .recipes-container .card-recipe-header-title, body .recipes-container .card-recipe-header-time {
   font-size: 1.6em;
 }
 body .recipes-container .card-recipe-body-ingredients, body .recipes-container .card-recipe-body-description {

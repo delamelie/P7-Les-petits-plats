@@ -149,6 +149,7 @@ export const recipes = [
     },
     {
         "id": 5,
+        "picture": "images/tarte-thon.jpg",
         "name": "Tarte au thon",
         "servings": 4,
         "ingredients": [
@@ -182,7 +183,7 @@ export const recipes = [
             }
         ],
         "time": 45,
-        "description": "Étaler la pâte feuilleté aux dimensions du moule, étaler la moutarde sur la pâte feuilletée, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes",
+        "description": "Étaler la pâte feuilletée aux dimensions du moule, étaler la moutarde sur la pâte feuilletée, ajouter le thon. Découper les tomates en rondelles et les poser sur le poisson, ajouter un peu de crème fraîche sur toute la tarte et recouvrez de gruyère râpé. Cuire au four 30 minutes",
         "appliance": "Four",
         "ustensils": ["moule à tarte", "râpe à fromage", "couteau"]
     },
@@ -227,6 +228,7 @@ export const recipes = [
         "ustensils": ["moule à tarte", "saladier", "fourchette"]
     }, {
         "id": 7,
+        "picture": "images/tartelettes-chocolat-fraise.jpg",
         "name": "Tartelettes au chocolat et aux fraises",
         "servings": 6,
         "ingredients": [
@@ -477,6 +479,7 @@ export const recipes = [
     },
     {
         "id": 14,
+        "picture": "images/galettes-saucisses.jpg",
         "name": "Galette bretonne saucisse et fromage à raclette",
         "servings": 2,
         "ingredients": [
@@ -1021,6 +1024,7 @@ export const recipes = [
     },
     {
         "id": 29,
+        "picture": "images/houmous.jpg",
         "name": "Houmous Express",
         "servings": 2,
         "ingredients": [
@@ -1052,6 +1056,7 @@ export const recipes = [
     },
     {
         "id": 30,
+        "picture": "images/purée-pois-cassés.jpg",
         "name": "Purée de pois cassés",
         "servings": 4,
         "ingredients": [
@@ -1077,6 +1082,7 @@ export const recipes = [
     },
     {
         "id": 31,
+        "picture": "images/jardinière-légumes.jpg",
         "name": "Jardinière de légumes",
         "servings": 4,
         "ingredients": [
@@ -1458,6 +1464,7 @@ export const recipes = [
     },
     {
         "id": 42,
+        "picture": "images/charlotte-poires.jpg",
         "name": "Charlotte aux poires",
         "servings": 3,
         "ingredients": [
@@ -1558,6 +1565,7 @@ export const recipes = [
     },
     {
         "id": 45,
+        "picture": "images/crème-pâtissière.jpg",
         "name": "Crème pâtissière",
         "servings": 8,
         "ingredients": [
@@ -1588,6 +1596,7 @@ export const recipes = [
     },
     {
         "id": 46,
+        "picture": "images/far-breton.jpg",
         "name": "Far breton",
         "servings": 6,
         "ingredients": [
@@ -1628,6 +1637,7 @@ export const recipes = [
     },
     {
         "id": 47,
+        "picture": "images/mousse-citron.jpg",
         "name": "Mousse au citron",
         "servings": 6,
         "ingredients": [
