@@ -60,7 +60,6 @@ function createRecipeCard(recipe) {
         divItem.appendChild(spanQuantity)
         divItem.appendChild(spanUnit)
         divIngredients.appendChild(divItem)
-
     })
     return divCard
 }

@@ -48,6 +48,8 @@ body .tags-section .search-filters .accordion-button.collapsed::after {
 }
 body .tags-section .search-filters-tags {
   width: 600px;
+  z-index: 10;
+  max-height: 500px;
 }
 body .tags-section .search-filters form input {
   width: 90%;
@@ -83,9 +85,8 @@ body .recipes-container .card-recipe-header-title, body .recipes-container .card
   font-size: 1.6em;
 }
 body .recipes-container .card-recipe-body-ingredients, body .recipes-container .card-recipe-body-description {
-  overflow: hidden !important;
+  overflow: hidden;
   text-overflow: ellipsis;
-  height: 95px;
   /*white-space: nowrap;*/
   display: -webkit-box;
   -webkit-line-clamp: 6;

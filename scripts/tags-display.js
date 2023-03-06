@@ -1,8 +1,5 @@
 import { recipes } from "/data/recipes.js"
-import { addClickEvent } from "./search-tags.js"
-import { inputIngredients } from "./search-tags.js"
-import { inputUstensils } from "./search-tags.js"
-import { inputAppliances } from "./search-tags.js"
+import { addClickEvent, inputIngredients, inputUstensils, inputAppliances } from "./search-tags.js"
 
 
 //////////////////////////////////// DOM elements /////////////////////////////////////
@@ -73,7 +70,7 @@ newUstensilsArray = Object.values(newUstensilsArray)
 
 ////////////////////////////// Display tags ////////////////////////////////////
 
-export function displayTags(items, container, type, input) {
+export function displayTagsInsideDropdowns(items, container, type, input) {
     items.forEach(item => {
         let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item[type]}</div>`
         container.innerHTML += listItem
@@ -81,9 +78,9 @@ export function displayTags(items, container, type, input) {
     })
 }
 
-displayTags(newIngredientsArray, ingredientsContainer, "ingredient", inputIngredients)
-displayTags(newAppliancesArray, appliancesContainer, "appliance", inputAppliances)
-displayTags(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
+displayTagsInsideDropdowns(newIngredientsArray, ingredientsContainer, "ingredient", inputIngredients)
+displayTagsInsideDropdowns(newAppliancesArray, appliancesContainer, "appliance", inputAppliances)
+displayTagsInsideDropdowns(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 
 
 

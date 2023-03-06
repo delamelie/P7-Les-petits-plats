@@ -68,6 +68,8 @@ body {
 
             &-tags {
                 width: 600px;
+                z-index: 10;
+                max-height: 500px;
             }
 
             form {
@@ -127,9 +129,8 @@ body {
 
                     &-ingredients,
                     &-description {
-                        overflow: hidden !important;
+                        overflow: hidden;
                         text-overflow: ellipsis;
-                        height: 95px;
                         /*white-space: nowrap;*/
                         display: -webkit-box;
                         -webkit-line-clamp: 6;

@@ -44,22 +44,22 @@
 
                 <div class="tags-container"></div>
 
-                <div class="search-filters d-flex mb-3 mt-4 accordion" id="searchfilters">
+                <div class="search-filters d-flex my-4 accordion" id="searchfilters">
 
 
-                    <div class="search-filters-dropdown accordion-item me-3 border-0 text-white">
+                    <div
+                        class="search-filters-dropdown accordion-item position-relative col-2 me-3 border-0 text-white">
                         <button
                             class="search-filters-button hide-btn color--primary me-2 px-3 fw-bold rounded border-0 accordion-button text-white"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false"
                             aria-controls="#collapseOne">
                             Ingrédients</button>
 
-                        <div class="search-filters-tags color--primary rounded collapse accordion-collapse"
+                        <div class="search-filters-tags color--primary position-absolute rounded collapse accordion-collapse overflow-auto"
                             data-bs-parent="#searchfilters" id="collapseOne">
                             <form method="post" action="" class="search-bar-tags">
                                 <label for="input-ingredients" class="hidden"> Entrez un ou des ingrédients dans la
-                                    barre de
-                                    recherche des ingrédients</label>
+                                    barre de recherche des ingrédients</label>
                                 <input type="text"
                                     class="input-ingredients fw-bold color--primary input__color--primary rounded border-0 text-white"
                                     placeholder="Rechercher un ingrédient">
@@ -73,7 +73,8 @@
                         </div>
                     </div>
 
-                    <div class="search-filters-dropdown accordion-item me-3 border-0 text-white">
+                    <div
+                        class="search-filters-dropdown accordion-item position-relative col-2 me-3 border-0 text-white">
                         <button
                             class="search-filters-button hide-btn color--secondary me-2 px-3 fw-bold rounded border-0 accordion-button text-white"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
@@ -81,12 +82,11 @@
                             Appareils
                         </button>
 
-                        <div class="search-filters-tags color--secondary rounded collapse accordion-collapse"
+                        <div class="search-filters-tags color--secondary position-absolute rounded collapse accordion-collapse overflow-auto"
                             data-bs-parent="#searchfilters" id="collapseTwo">
                             <form method="post" action="" class="search-bar-tags">
                                 <label for="input-appliances" class="hidden"> Entrez un ou des appareils dans la barre
-                                    de
-                                    recherche des appareils</label>
+                                    de recherche des appareils</label>
                                 <input type="text"
                                     class="input-appliances fw-bold color--secondary input__color--secondary rounded border-0 text-white"
                                     placeholder="Rechercher un appareil">
@@ -98,7 +98,7 @@
                         </div>
                     </div>
 
-                    <div class="search-filters-dropdown accordion-item border-0 text-white">
+                    <div class="search-filters-dropdown accordion-item position-relative col-2 border-0 text-white">
                         <button
                             class="search-filters-button hide-btn color--tertiary me-2 px-3 fw-bold rounded border-0 accordion-button text-white"
                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
@@ -106,7 +106,7 @@
                             Ustensiles
                         </button>
 
-                        <div class="search-filters-tags color--tertiary rounded collapse accordion-collapse"
+                        <div class="search-filters-tags color--tertiary position-absolute rounded collapse accordion-collapse overflow-auto"
                             data-bs-parent="#searchfilters" id="collapseThree">
                             <form method="post" action="" class="search-bar-tags">
                                 <label for="input-ustensils" class="hidden"> Entrez un ou des ustensiles dans la barre
