@@ -83,7 +83,6 @@ displayTagsInsideDropdowns(newAppliancesArray, appliancesContainer, "appliance",
 displayTagsInsideDropdowns(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 
 
-
 // Open and close ingredients
 
 /*const buttons = document.querySelectorAll('.search-filters-button');

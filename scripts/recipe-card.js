@@ -48,17 +48,14 @@ function createRecipeCard(recipe) {
         const divItem = document.createElement("div")
         const spanIngredient = document.createElement("span")
         const spanQuantity = document.createElement("span")
-        const spanUnit = document.createElement("span")
 
         spanIngredient.setAttribute("class", "fw-bold")
-
-        spanIngredient.textContent = `${ingredient.ingredient} : `
-        spanQuantity.textContent = ingredient.quantity
-        spanUnit.textContent = ingredient.unit
+        // Check if the object has quantity and unit and display data accordingly
+        spanIngredient.textContent = ingredient.hasOwnProperty('quantity') ? `${ingredient.ingredient} : ` : ingredient.ingredient
+        spanQuantity.textContent = ingredient.hasOwnProperty('unit') ? `${ingredient.quantity} ${ingredient.unit}` : ingredient.quantity
 
         divItem.appendChild(spanIngredient)
         divItem.appendChild(spanQuantity)
-        divItem.appendChild(spanUnit)
         divIngredients.appendChild(divItem)
     })
     return divCard

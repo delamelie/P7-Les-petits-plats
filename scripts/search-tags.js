@@ -1,11 +1,7 @@
 import { recipes } from "../data/recipes.js"
 import { ingredientsContainer, appliancesContainer, ustensilsContainer } from "./tags-display.js"
 import { displayRecipes, recipesContainer } from "./recipe-card.js"
-import { displayReset, removeAccents } from "./main-search.js"
-
-
-// import { newUstensilsArray, newIngredientsArray, newAppliancesArray } from "./tags-display.js"
-// import { displayTagsInsideDropdowns } from "./tags-display.js"
+import { displayReset, removeAccents, search, filteredRecipes } from "./main-search.js"
 
 
 //////////////////////////////////////////// DOM elements /////////////////////////////////////////////////////
@@ -54,7 +50,8 @@ export function addClickEvent(selector, itemType, input) {
         item.addEventListener("click", function clickTag(event) {
             clickedItem = event.target.innerText
             createSelectedTag(itemType, clickedItem)
-            filterOnclick()
+            //filterOnclick()
+            search()
             input.value = ""
         })
     })
@@ -89,50 +86,8 @@ function createSelectedTag(itemType, clickedItem) {
 }
 
 
-// Filter recipes onclick
+// Filter recipes onclick 
 
-let filteredRecipes = recipes
-
-function filterOnclick() {
-    filteredRecipes = recipes
-    let clickedItemTag = document.querySelectorAll(".clicked-item-tag")
-    if ((clickedItemTag.length) != 0) {
-        clickedItemTag.forEach((item => {
-            let clickedItem = item.innerText.trim()
-            let itemType = item.getAttribute("item-type")
-            switch (itemType) {
-                case "ingredient":
-                    filteredRecipes = filteredRecipes.filter(recipe => recipe.ingredients.some(ing => ing.ingredient.toLowerCase().includes(clickedItem.toLowerCase())))
-                    break
-                case "appliance":
-                    filteredRecipes = filteredRecipes.filter(recipe => (recipe.appliance.toLowerCase().includes(clickedItem.toLowerCase())))
-                    break
-                case "ustensil":
-                    filteredRecipes = filteredRecipes.filter(recipe => recipe.ustensils.some(ustensil => ustensil.toLowerCase().includes(clickedItem.toLowerCase())))
-                    break
-            }
-            console.log(filteredRecipes)
-            domUpdateOnclick()
-        }
-        ))
-    } else {
-        displayReset()
-    }
-}
-
-
-// Update recipes and dropdowns
-
-function domUpdateOnclick() {
-    recipesContainer.textContent = ""
-    displayRecipes(filteredRecipes)
-    ingredientsContainer.innerHTML = ""
-    updateIngredientsDropdown(filteredRecipes)
-    appliancesContainer.innerHTML = ""
-    updateAppliancesDropdown(filteredRecipes)
-    ustensilsContainer.innerHTML = ""
-    updateUstensilsDropdown(filteredRecipes)
-}
 
 
 // Remove clicked items from dropdown
@@ -150,62 +105,6 @@ function removeClickedItems(itemsList) {
 }
 
 
-///// Update dropdowns //////
-
-// Generic function
-function updateDropdowns(items, type, container, selector, input) {
-    items.forEach(item => {
-        let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item}</div>`
-        container.innerHTML += listItem
-    })
-    let list = document.querySelectorAll(selector)
-    removeClickedItems(list)
-    addClickEvent(selector, type, input)
-}
-
-
-// Update each container
-
-function updateIngredientsDropdown(recipes) {
-    let itemsArray = []
-    recipes.forEach(recipe => {
-        recipe.ingredients.forEach(ingredient => {
-            let ing = ingredient.ingredient
-            itemsArray.push(ing)
-            itemsArray = itemsArray.map(ing => ing.charAt(0).toUpperCase() + ing.slice(1).toLowerCase())
-            itemsArray = itemsArray.filter((ing, index) => itemsArray.indexOf(ing) === index)
-        })
-    })
-    updateDropdowns(itemsArray, "ingredient", ingredientsContainer, ".item-filtered-ingredient", inputIngredients)
-    console.log(itemsArray)
-}
-
-function updateUstensilsDropdown(recipes) {
-    let itemsArray = []
-    recipes.forEach(recipe => {
-        recipe.ustensils.forEach(ustensil => {
-            itemsArray.push(ustensil)
-            itemsArray = itemsArray.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.slice(1).toLowerCase())
-            itemsArray = itemsArray.filter((ustensil, index) => itemsArray.indexOf(ustensil) === index)
-        })
-    })
-    updateDropdowns(itemsArray, "ustensil", ustensilsContainer, ".item-filtered-ustensil", inputUstensils)
-    console.log(itemsArray)
-}
-
-
-function updateAppliancesDropdown(recipes) {
-    let itemsArray = []
-    recipes.forEach(recipe => {
-        itemsArray.push(recipe.appliance)
-        itemsArray = itemsArray.map(appliance => appliance.charAt(0).toUpperCase() + appliance.slice(1).toLowerCase())
-        itemsArray = itemsArray.filter((appliance, index) => itemsArray.indexOf(appliance) === index)
-    })
-    updateDropdowns(itemsArray, "appliance", appliancesContainer, ".item-filtered-appliance", inputAppliances)
-    console.log(itemsArray)
-}
-
-
 // Remove selected tags when they are unclicked
 
 function addEventToRemoveTags() {
@@ -214,41 +113,93 @@ function addEventToRemoveTags() {
         button.addEventListener("click", (event) => {
             let tag = event.target.parentElement
             tag.remove()
-            filterOnclick()
+            //filterOnclick()
+            search()
         })
     })
 }
 
-////////////////////// A supprimer ///////////
 
-// function searchItems(input, container, array, type, property) {
-//     let inputValue = input.value.trim()
-//     const normalizedInputValue = removeAccents(inputValue)
-//     const itemsFilteredByTag = array.filter(item => removeAccents(item[property].toLowerCase()).includes(normalizedInputValue.toLowerCase()))
-//     if (itemsFilteredByTag.length != 0) {
-//         container.innerHTML = ""
-//         displayTagsInsideDropdowns(itemsFilteredByTag, container, type, input)
-//     } else {
-//         container.innerHTML = ""
-//     }
+
+
+///////////////////// A supprimer /////////////////
+
+
+// Update recipes and dropdowns
+
+// export function domUpdateOnclick() {
+//     recipesContainer.textContent = ""
+//     displayRecipes(filteredRecipes)
+//     ingredientsContainer.innerHTML = ""
+//     updateIngredientsDropdown(filteredRecipes)
+//     appliancesContainer.innerHTML = ""
+//     updateAppliancesDropdown(filteredRecipes)
+//     ustensilsContainer.innerHTML = ""
+//     updateUstensilsDropdown(filteredRecipes)
+// }
+
+///// Update dropdowns //////
+
+// Generic function
+// function updateDropdowns(items, type, container, selector, input) {
+//     items.forEach(item => {
+//         let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item}</div>`
+//         container.innerHTML += listItem
+//     })
+//     let list = document.querySelectorAll(selector)
+//     removeClickedItems(list)
+//     addClickEvent(selector, type, input)
 // }
 
 
-// function searchUstensils() {
-//     searchItems(inputUstensils, ustensilsContainer, newUstensilsArray, "ustensil", "ustensil")
+export function updateDropdowns2(selector) {
+    let list = document.querySelectorAll(selector)
+    removeClickedItems(list)
+    addClickEvent(selector)
+}
+
+
+// Update each container
+
+// function updateIngredientsDropdown(recipes) {
+//     let itemsArray = []
+//     recipes.forEach(recipe => {
+//         recipe.ingredients.forEach(ingredient => {
+//             let ing = ingredient.ingredient
+//             itemsArray.push(ing)
+//             itemsArray = itemsArray.map(ing => ing.charAt(0).toUpperCase() + ing.slice(1).toLowerCase())
+//             itemsArray = itemsArray.filter((ing, index) => itemsArray.indexOf(ing) === index)
+//         })
+//     })
+//     updateDropdowns(itemsArray, "ingredient", ingredientsContainer, ".item-filtered-ingredient", inputIngredients)
+//     //console.log(itemsArray)
 // }
 
-// function searchIngredients() {
-//     searchItems(inputIngredients, ingredientsContainer, newIngredientsArray, "ingredient", "ingredient")
+
+// function updateUstensilsDropdown(recipes) {
+//     let itemsArray = []
+//     recipes.forEach(recipe => {
+//         recipe.ustensils.forEach(ustensil => {
+//             itemsArray.push(ustensil)
+//             itemsArray = itemsArray.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.slice(1).toLowerCase())
+//             itemsArray = itemsArray.filter((ustensil, index) => itemsArray.indexOf(ustensil) === index)
+//         })
+//     })
+//     updateDropdowns(itemsArray, "ustensil", ustensilsContainer, ".item-filtered-ustensil", inputUstensils)
+//     //console.log(itemsArray)
 // }
 
-// function searchAppliances() {
-//     searchItems(inputAppliances, appliancesContainer, newAppliancesArray, "appliance", "appliance")
+
+// function updateAppliancesDropdown(recipes) {
+//     let itemsArray = []
+//     recipes.forEach(recipe => {
+//         itemsArray.push(recipe.appliance)
+//         itemsArray = itemsArray.map(appliance => appliance.charAt(0).toUpperCase() + appliance.slice(1).toLowerCase())
+//         itemsArray = itemsArray.filter((appliance, index) => itemsArray.indexOf(appliance) === index)
+//     })
+//     updateDropdowns(itemsArray, "appliance", appliancesContainer, ".item-filtered-appliance", inputAppliances)
+//     //console.log(itemsArray)
 // }
-
-
-
-
 
 
 
