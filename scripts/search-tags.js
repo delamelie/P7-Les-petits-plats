@@ -50,7 +50,6 @@ export function addClickEvent(selector, itemType, input) {
         item.addEventListener("click", function clickTag(event) {
             clickedItem = event.target.innerText
             createSelectedTag(itemType, clickedItem)
-            //filterOnclick()
             search()
             input.value = ""
         })
@@ -92,11 +91,12 @@ function createSelectedTag(itemType, clickedItem) {
 
 // Remove clicked items from dropdown
 
-function removeClickedItems(itemsList) {
+export function removeClickedItems(selector) {
+    let listItems = document.querySelectorAll(selector)
     let clickedItemTags = document.querySelectorAll(".clicked-item-tag")
     clickedItemTags.forEach(clickedItemTag => {
         let clickedItem = clickedItemTag.innerText.trim()
-        itemsList.forEach(item => {
+        listItems.forEach(item => {
             if (item.innerText.toLowerCase().includes(clickedItem.toLowerCase())) {
                 item.remove()
             }
@@ -113,93 +113,12 @@ function addEventToRemoveTags() {
         button.addEventListener("click", (event) => {
             let tag = event.target.parentElement
             tag.remove()
-            //filterOnclick()
             search()
         })
     })
 }
 
 
-
-
-///////////////////// A supprimer /////////////////
-
-
-// Update recipes and dropdowns
-
-// export function domUpdateOnclick() {
-//     recipesContainer.textContent = ""
-//     displayRecipes(filteredRecipes)
-//     ingredientsContainer.innerHTML = ""
-//     updateIngredientsDropdown(filteredRecipes)
-//     appliancesContainer.innerHTML = ""
-//     updateAppliancesDropdown(filteredRecipes)
-//     ustensilsContainer.innerHTML = ""
-//     updateUstensilsDropdown(filteredRecipes)
-// }
-
-///// Update dropdowns //////
-
-// Generic function
-// function updateDropdowns(items, type, container, selector, input) {
-//     items.forEach(item => {
-//         let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item}</div>`
-//         container.innerHTML += listItem
-//     })
-//     let list = document.querySelectorAll(selector)
-//     removeClickedItems(list)
-//     addClickEvent(selector, type, input)
-// }
-
-
-export function updateDropdowns2(selector) {
-    let list = document.querySelectorAll(selector)
-    removeClickedItems(list)
-    addClickEvent(selector)
-}
-
-
-// Update each container
-
-// function updateIngredientsDropdown(recipes) {
-//     let itemsArray = []
-//     recipes.forEach(recipe => {
-//         recipe.ingredients.forEach(ingredient => {
-//             let ing = ingredient.ingredient
-//             itemsArray.push(ing)
-//             itemsArray = itemsArray.map(ing => ing.charAt(0).toUpperCase() + ing.slice(1).toLowerCase())
-//             itemsArray = itemsArray.filter((ing, index) => itemsArray.indexOf(ing) === index)
-//         })
-//     })
-//     updateDropdowns(itemsArray, "ingredient", ingredientsContainer, ".item-filtered-ingredient", inputIngredients)
-//     //console.log(itemsArray)
-// }
-
-
-// function updateUstensilsDropdown(recipes) {
-//     let itemsArray = []
-//     recipes.forEach(recipe => {
-//         recipe.ustensils.forEach(ustensil => {
-//             itemsArray.push(ustensil)
-//             itemsArray = itemsArray.map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.slice(1).toLowerCase())
-//             itemsArray = itemsArray.filter((ustensil, index) => itemsArray.indexOf(ustensil) === index)
-//         })
-//     })
-//     updateDropdowns(itemsArray, "ustensil", ustensilsContainer, ".item-filtered-ustensil", inputUstensils)
-//     //console.log(itemsArray)
-// }
-
-
-// function updateAppliancesDropdown(recipes) {
-//     let itemsArray = []
-//     recipes.forEach(recipe => {
-//         itemsArray.push(recipe.appliance)
-//         itemsArray = itemsArray.map(appliance => appliance.charAt(0).toUpperCase() + appliance.slice(1).toLowerCase())
-//         itemsArray = itemsArray.filter((appliance, index) => itemsArray.indexOf(appliance) === index)
-//     })
-//     updateDropdowns(itemsArray, "appliance", appliancesContainer, ".item-filtered-appliance", inputAppliances)
-//     //console.log(itemsArray)
-// }
 
 
 
