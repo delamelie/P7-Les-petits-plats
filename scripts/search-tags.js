@@ -1,4 +1,4 @@
-import { removeAccents, search } from "./test.js"
+import { removeAccents, search } from "./search-function.js"
 
 
 //////////////////////////////////////////// DOM elements /////////////////////////////////////////////////////
