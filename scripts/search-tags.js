@@ -1,7 +1,4 @@
-import { recipes } from "../data/recipes.js"
-import { ingredientsContainer, appliancesContainer, ustensilsContainer } from "./tags-display.js"
-import { displayRecipes, recipesContainer } from "./recipe-card.js"
-import { displayReset, removeAccents, search, filteredRecipes } from "./main-search.js"
+import { removeAccents, search } from "./test.js"
 
 
 //////////////////////////////////////////// DOM elements /////////////////////////////////////////////////////
@@ -83,10 +80,6 @@ function createSelectedTag(itemType, clickedItem) {
     tagsContainer.innerHTML += selectedTag
     addEventToRemoveTags()
 }
-
-
-// Filter recipes onclick 
-
 
 
 // Remove clicked items from dropdown

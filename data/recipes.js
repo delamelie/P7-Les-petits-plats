@@ -1432,7 +1432,7 @@ export const recipes = [
             }
         ],
         "time": 10,
-        "description": "Dans un saladier mettre l'eau, le jus des citrons et le sucre. Bien mélanger. Ajouter le bicarbonate. Servir. Ajouter des glaçon et une feuille de menthe pour la déco.",
+        "description": "Dans un saladier mettre l'eau, le jus des citrons et le sucre. Bien mélanger. Ajouter le bicarbonate. Servir. Ajouter des glaçons et une feuille de menthe pour la déco.",
         "appliance": "Saladier",
         "ustensils": ["cuillère en bois"]
     },

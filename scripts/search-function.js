@@ -7,11 +7,11 @@ import { inputIngredients, inputUstensils, inputAppliances, removeClickedItems }
 ///////// Create flat array containing all searchable keywords (among names, recipes, ingredients) //////////
 
 let newRecipesArray = recipes.map(recipe => {
-    let words = []
-    words.push(recipe.name.toLowerCase())
-    words.push(recipe.description.toLowerCase())
-    recipe.ingredients.forEach(ingredient => words.push(ingredient.ingredient.toLowerCase()))
-    return { id: recipe.id, words: words }
+    let keywords = []
+    keywords.push(recipe.name.toLowerCase())
+    keywords.push(recipe.description.toLowerCase())
+    recipe.ingredients.forEach(ingredient => keywords.push(ingredient.ingredient.toLowerCase()))
+    return { id: recipe.id, keywords: keywords }
 })
 
 
@@ -24,7 +24,7 @@ inputSearchBar.addEventListener("input", search)
 // Remove accents from strings to compare items with input
 
 export function removeAccents(string) {
-    return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
 
 
@@ -42,12 +42,12 @@ export function search() {
     // Search by main input
     let inputValue = inputSearchBar.value.toLowerCase()
     let normalizedInputValue = removeAccents(inputValue)
-    searchResultsStore = newRecipesArray.filter(recipe => removeAccents(recipe.words.toString()).includes(normalizedInputValue));
     if (inputSearchBar.value.length >= 3) {
+        searchResultsStore = newRecipesArray.filter(recipe => removeAccents(recipe.keywords.toString()).includes(normalizedInputValue))
         updateRecipes(searchResultsStore)
         updateTags(searchResultsStore)
         if (searchResultsStore.length === 0) {
-            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
         }
     } else {
         displayReset()
@@ -89,18 +89,17 @@ export function search() {
         updateRecipes(crossResults)
         updateTags(crossResults)
         if (crossResults == 0) {
-            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+            recipesContainer.textContent = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
         }
     }
 }
-
 
 
 //Create array to retrieve recipes matching previously stored ids and update recipes display accordingly
 
 function updateRecipes(results) {
     let updatedRecipesArray = recipes.filter(recipe => results.some(result => recipe.id === result.id))
-    recipesContainer.textContent = ''
+    recipesContainer.textContent = ""
     displayRecipes(updatedRecipesArray)
 }
 

@@ -14,13 +14,10 @@ export const ustensilsContainer = document.querySelector(".search-filters-ustens
 
 // Retrieve ingredients and capitalize names
 
-export let newIngredientsArray = recipes.map(({ id, ingredients }) => ingredients.map(({ ingredient }) => ({ id, ingredient })))
-    .flat()
+export let newIngredientsArray = recipes.flatMap(({ id, ingredients }) => ingredients.flatMap(({ ingredient }) => ({ id, ingredient })))
 
-newIngredientsArray = newIngredientsArray.map(ingredient => {
-    let word = ingredient.ingredient
-    return { id: ingredient.id, ingredient: (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) }
-})
+newIngredientsArray = newIngredientsArray.map(ingredient => ({ id: ingredient.id, ingredient: (ingredient.ingredient.charAt(0).toUpperCase() + ingredient.ingredient.slice(1).toLowerCase()) }))
+
 
 // Remove duplicates
 
@@ -35,9 +32,16 @@ newIngredientsArray = Object.values(newIngredientsArray)
 
 //////////////////////////// Create appliances' array ///////////////////////////////
 
-// Retrieve appliances and remove duplicates
+// Retrieve appliances and and capitalize names
 
-export let newAppliancesArray = recipes.reduce((accumulator, { id, appliance }) => {
+export let newAppliancesArray = recipes.map(({ id, appliance }) => ({ id, appliance }))
+
+newAppliancesArray = newAppliancesArray.map(appliance => ({ id: appliance.id, appliance: (appliance.appliance.charAt(0).toUpperCase() + appliance.appliance.slice(1).toLowerCase()) }))
+
+
+// Remove duplicates
+
+newAppliancesArray = recipes.reduce((accumulator, { id, appliance }) => {
     accumulator[appliance] = accumulator[appliance] || { appliance: appliance, ids: [] }
     accumulator[appliance].ids.push(id)
     return accumulator
@@ -52,10 +56,8 @@ newAppliancesArray = Object.values(newAppliancesArray)
 
 export let newUstensilsArray = recipes.flatMap(({ id, ustensils }) => ustensils.map(ustensil => ({ id, ustensil })))
 
-newUstensilsArray = newUstensilsArray.map(ustensil => {
-    let word = ustensil.ustensil
-    return { id: ustensil.id, ustensil: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() }
-})
+newUstensilsArray = newUstensilsArray.map(ustensil => ({ id: ustensil.id, ustensil: ustensil.ustensil.charAt(0).toUpperCase() + ustensil.ustensil.slice(1).toLowerCase() }))
+
 
 // Remove duplicates
 
@@ -85,13 +87,13 @@ displayTagsInsideDropdowns(newUstensilsArray, ustensilsContainer, "ustensil", in
 
 // Open and close ingredients
 
-/*const buttons = document.querySelectorAll('.search-filters-button');
+/*const buttons = document.querySelectorAll('.search-filters-button')
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         button.classList.toggle('d-none')
-    });
-});*/
+    })
+})*/
 
 
 
