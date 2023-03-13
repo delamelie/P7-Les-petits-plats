@@ -6,13 +6,23 @@ import { inputIngredients, inputUstensils, inputAppliances, removeClickedItems }
 
 ///////// Create flat array containing all searchable keywords (among names, recipes, ingredients) //////////
 
-let newRecipesArray = recipes.map(recipe => {
-    let keywords = []
-    keywords.push(recipe.name.toLowerCase())
-    keywords.push(recipe.description.toLowerCase())
-    recipe.ingredients.forEach(ingredient => keywords.push(ingredient.ingredient.toLowerCase()))
-    return { id: recipe.id, keywords: keywords }
-})
+function createNewRecipesArray() {
+    let newRecipesArray = []
+    for (let recipe of recipes) {
+        let id = recipe.id
+        let keywords = []
+        keywords.push(recipe.name.toLowerCase())
+        keywords.push(recipe.description.toLowerCase())
+
+        for (let ingredients of recipe.ingredients) {
+            keywords.push(ingredients.ingredient.toLowerCase())
+        }
+        newRecipesArray.push({ id: id, keywords: keywords })
+    }
+    return newRecipesArray
+}
+
+let newRecipesArray = createNewRecipesArray()
 
 
 //////////////////////////////////// Create search function on main input //////////////////////////////////////
@@ -28,22 +38,38 @@ export function removeAccents(string) {
 }
 
 
-// Store results from filtering arrays containing keywords and tags and store cross results
+// Store results from filtering arrays containing keywords and tags
 
 export let filteredRecipes = recipes
-let searchResultsStore = []
 let clickedResultsSore = []
 let crossResults = []
 
 
 // Search function
 
+
 export function search() {
     // Search by main input
     let inputValue = inputSearchBar.value.toLowerCase()
     let normalizedInputValue = removeAccents(inputValue)
+    let searchResultsStore = []
     if (inputSearchBar.value.length >= 3) {
-        searchResultsStore = newRecipesArray.filter(recipe => removeAccents(recipe.keywords.toString()).includes(normalizedInputValue))
+
+        for (let recipe of newRecipesArray) {
+            const keywords = recipe.keywords
+            let matchingValueFound = false
+
+            for (let keyword of keywords) {
+                if (removeAccents(keyword).includes(normalizedInputValue)) {
+                    matchingValueFound = true
+                }
+            }
+
+            if (matchingValueFound) {
+                searchResultsStore.push(recipe)
+            }
+        }
+        console.log(searchResultsStore)
         updateRecipes(searchResultsStore)
         updateTags(searchResultsStore)
         if (searchResultsStore.length === 0) {
@@ -59,7 +85,6 @@ export function search() {
     if ((clickedItemTag.length) != 0) {
         clickedItemTag.forEach((item => {
             let clickedItem = item.innerText.trim()
-            console.log(clickedItem)
             let itemType = item.getAttribute("item-type")
             switch (itemType) {
                 case "ingredient":
@@ -72,14 +97,14 @@ export function search() {
                     filteredRecipes = filteredRecipes.filter(recipe => recipe.ustensils.some(ustensil => ustensil.toLowerCase() === (clickedItem.toLowerCase())))
                     break
             }
+
             clickedResultsSore = filteredRecipes.map(({ id }) => ({ id }))
             updateRecipes(clickedResultsSore)
             updateTags(clickedResultsSore)
         }
         ))
+        console.log(clickedResultsSore)
     }
-    console.log(clickedResultsSore)
-    console.log(searchResultsStore)
 
     // Combined search
     if (inputSearchBar.value.length >= 3 && (clickedItemTag.length) != 0) {
@@ -97,7 +122,14 @@ export function search() {
 //Create array to retrieve recipes matching previously stored ids and update recipes display accordingly
 
 function updateRecipes(results) {
-    let updatedRecipesArray = recipes.filter(recipe => results.some(result => recipe.id === result.id))
+    let updatedRecipesArray = []
+    for (let recipe of recipes) {
+        for (let result of results) {
+            if (recipe.id == result.id) {
+                updatedRecipesArray.push(recipe)
+            }
+        }
+    }
     recipesContainer.textContent = ""
     displayRecipes(updatedRecipesArray)
 }
