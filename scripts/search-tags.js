@@ -74,8 +74,8 @@ function createSelectedTag(itemType, clickedItem) {
             break
     }
     let selectedTag =
-        `<span class="clicked-item-tag fw-bold ${classItem} me-2 rounded p-2 text-white" item-type="${itemType}">${clickedItem}
-            <span class="fa-regular fa-circle-xmark ms-3 text-white" role="button" type="button"></span>
+        `<span class="clicked-item-tag fw-bold ${classItem} me-2 mb-2 p-2 rounded text-white" item-type="${itemType}">${clickedItem}
+            <span class="fa-regular fa-circle-xmark ms-3 text-white" role="button" type="button" aria-label="Déselectionner le tag"></span>
         </span>`
     tagsContainer.innerHTML += selectedTag
     addEventToRemoveTags()

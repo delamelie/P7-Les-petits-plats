@@ -17,8 +17,8 @@ function createRecipeCard(recipe) {
 
     divCard.setAttribute("class", "card col-auto col-md-6 col-xxl-4 g-4 border-0")
     image.setAttribute("src", recipe.picture)
-    image.setAttribute("class", "rounded-top h-50")
     image.setAttribute("alt", recipe.name)
+    image.setAttribute("class", "rounded-top h-50")
     divRecipe.setAttribute("class", "card-recipe h-50 p-3 rounded-bottom")
     cardHeader.setAttribute("class", "card-recipe-header row mb-2")
     divTitle.setAttribute("class", "card-recipe-header-title col-8 mb-0 fw-bold")

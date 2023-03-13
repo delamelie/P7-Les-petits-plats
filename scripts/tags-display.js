@@ -7,7 +7,6 @@ import { addClickEvent, inputIngredients, inputUstensils, inputAppliances } from
 export const ingredientsContainer = document.querySelector(".search-filters-ingredients")
 export const appliancesContainer = document.querySelector(".search-filters-appliances")
 export const ustensilsContainer = document.querySelector(".search-filters-ustensils")
-//const closeFiltersBtn = document.querySelectorAll(".search-filters-close-button")
 
 
 ///////////////////////////// Create ingredients' array //////////////////////////////
@@ -74,7 +73,7 @@ newUstensilsArray = Object.values(newUstensilsArray)
 
 export function displayTagsInsideDropdowns(items, container, type, input) {
     items.forEach(item => {
-        let listItem = `<div class="item-filtered item-filtered-${type} col-4 text-start gx-0" role="button">${item[type]}</div>`
+        let listItem = `<div class="item-filtered item-filtered-${type} col-xl-4 col-md-6 col-12 text-start flex-wrap" role="button">${item[type]}</div>`
         container.innerHTML += listItem
         addClickEvent(`.item-filtered-${type}`, type, input)
     })
@@ -85,47 +84,7 @@ displayTagsInsideDropdowns(newAppliancesArray, appliancesContainer, "appliance",
 displayTagsInsideDropdowns(newUstensilsArray, ustensilsContainer, "ustensil", inputUstensils)
 
 
-// Open and close ingredients
 
-/*const buttons = document.querySelectorAll('.search-filters-button')
-
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        button.classList.toggle('d-none')
-    })
-})*/
-
-
-
-
-/*function openFilters() {
-    const openFiltersBtn = document.querySelectorAll(".search-filters-button")
-    openFiltersBtn.forEach(button =>
-        button.addEventListener("click", (event) => {
-            let ingredientsContainer = event.target.nextElementSibling
-            event.target.style.display = "none"
-            console.log('yoyo')
-            ingredientsContainer.classList.toggle("open")
-            ingredientsContainer.style.display = "block"
-            /*console.log(event.target)
-            console.log(ingredientsContainer)
-        }))
-}
-openFilters()*/
-
-/*function closeFilters() {
-    closeFiltersBtn.forEach(button =>
-        button.addEventListener("click", (event) => {
-            let dropdown = event.target.parentNode.parentNode
-            let closeFiltersBtn = ingredientsContainer.previousElementSibling
-            dropdown.classList.remove('show')
-            /*dropdown.classList.toggle("closed")
-            dropdown.style.display = "none"
-            closeFiltersBtn.style.display = "block"
-            /*event.target.nextElementSibling.style.display = "block"
-        }))
-}
-closeFilters()*/
 
 
 

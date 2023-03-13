@@ -28,7 +28,7 @@ export function removeAccents(string) {
 }
 
 
-// Store results from filtering arrays containing keywords and tags
+// Store results from filtering arrays containing keywords and tags and store cross results
 
 export let filteredRecipes = recipes
 let searchResultsStore = []
@@ -72,7 +72,6 @@ export function search() {
                     filteredRecipes = filteredRecipes.filter(recipe => recipe.ustensils.some(ustensil => ustensil.toLowerCase() === (clickedItem.toLowerCase())))
                     break
             }
-
             clickedResultsSore = filteredRecipes.map(({ id }) => ({ id }))
             updateRecipes(clickedResultsSore)
             updateTags(clickedResultsSore)
@@ -124,7 +123,7 @@ function updateTags(results) {
 
 // Reset recipes and dropdowns when inputs are cleared and/or tags unclicked
 
-export function displayReset() {
+function displayReset() {
     recipesContainer.textContent = ""
     displayRecipes(recipes)
     ingredientsContainer.innerHTML = ""
