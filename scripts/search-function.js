@@ -1,4 +1,4 @@
-import { recipes } from "/data/recipes.js"
+import { recipes } from "./data/recipes.js"
 import { ingredientsContainer, appliancesContainer, ustensilsContainer, newIngredientsArray, newAppliancesArray, newUstensilsArray, displayTagsInsideDropdowns } from "./tags-display.js"
 import { recipesContainer, displayRecipes } from "./recipe-card.js"
 import { inputIngredients, inputUstensils, inputAppliances, removeClickedItems } from "./search-tags.js"

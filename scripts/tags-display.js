@@ -1,4 +1,4 @@
-import { recipes } from "/data/recipes.js"
+import { recipes } from "./data/recipes.js"
 import { addClickEvent, inputIngredients, inputUstensils, inputAppliances } from "./search-tags.js"
 
 
