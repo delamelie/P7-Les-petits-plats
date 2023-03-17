@@ -53,17 +53,24 @@ body {
 
         .search-filters {
 
+            @media screen and (max-width: 542px) {
+                flex-wrap: nowrap;
+                flex-direction: column;
+            }
+
             &-dropdown {
-                @media screen and (max-width: 589px) {
-                    margin-bottom: 15px;
-                }
+                margin-bottom: 15px;
             }
 
             &-button {
-                min-width: 170px;
+                width: 170px;
                 height: 65px;
                 font-size: 1.3em;
                 box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+            }
+
+            .accordion-button.collapsed {
+                width: 170px;
             }
 
             .accordion-button:not(.collapsed)::after {
@@ -71,15 +78,8 @@ body {
                 transform: rotate(-180deg);
             }
 
-            .accordion-button.collapsed::after {
-                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-            }
-
-            &-tags {
+            .accordion-button:not(.collapsed) {
                 width: 700px;
-                z-index: 10;
-                max-height: 500px;
-
 
                 @media screen and (max-width: 1199px) {
                     width: 450px;
@@ -93,10 +93,29 @@ body {
                     width: 300px;
                 }
 
-                @media screen and (max-width: 767px) {
-                    width: 177px;
+            }
+
+            .accordion-button.collapsed::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            }
+
+
+            &-tags {
+                width: 700px;
+                z-index: 10;
+                max-height: 500px;
+
+                @media screen and (max-width: 1199px) {
+                    width: 450px;
                 }
 
+                @media screen and (max-width: 880px) {
+                    width: 356px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    width: 300px;
+                }
 
                 .item-filtered {
                     font-size: 1.2em;
@@ -119,6 +138,7 @@ body {
             form {
 
                 input {
+
                     width: 90%;
                     height: 70px;
                     text-indent: 20px;
