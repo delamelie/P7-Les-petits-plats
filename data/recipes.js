@@ -1,7 +1,7 @@
 export const recipes = [
     {
         "id": 1,
-        "picture": "images/limonade-coco.jpg",
+        "picture": "./images/limonade-coco.jpg",
         "name": "Limonade de coco",
         "servings": 1,
         "ingredients": [
@@ -35,7 +35,7 @@ export const recipes = [
     },
     {
         "id": 2,
-        "picture": "images/poisson-cru-tahitienne.jpg",
+        "picture": "./images/poisson-cru-tahitienne.jpg",
         "name": "Poisson cru à la tahitienne",
         "servings": 2,
         "ingredients": [
