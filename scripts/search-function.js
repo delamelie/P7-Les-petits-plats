@@ -69,7 +69,6 @@ export function search() {
                 searchResultsStore.push(recipe)
             }
         }
-        console.log(searchResultsStore)
         updateRecipes(searchResultsStore)
         updateTags(searchResultsStore)
         if (searchResultsStore.length === 0) {
@@ -103,13 +102,11 @@ export function search() {
             updateTags(clickedResultsSore)
         }
         ))
-        console.log(clickedResultsSore)
     }
 
     // Combined search
     if (inputSearchBar.value.length >= 3 && (clickedItemTag.length) != 0) {
         crossResults = searchResultsStore.filter(item => clickedResultsSore.some(testItem => item.id === testItem.id))
-        console.log(crossResults)
         updateRecipes(crossResults)
         updateTags(crossResults)
         if (crossResults == 0) {
